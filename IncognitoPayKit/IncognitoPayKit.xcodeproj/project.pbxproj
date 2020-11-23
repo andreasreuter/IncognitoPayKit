@@ -10,6 +10,9 @@
 		E1A704DF256BB0F900DC9AAA /* IncognitoPayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */; };
 		E1A704E4256BB0F900DC9AAA /* IncognitoPayKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704E3256BB0F900DC9AAA /* IncognitoPayKitTests.swift */; };
 		E1A704E6256BB0F900DC9AAA /* IncognitoPayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A704F1256BB60200DC9AAA /* Images.xcassets */; };
+		E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */; };
+		E1A7057C256BE36A00DC9AAA /* IncognitoPayButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A7057B256BE36A00DC9AAA /* IncognitoPayButtonActions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		E1A704DE256BB0F900DC9AAA /* IncognitoPayKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IncognitoPayKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A704E3256BB0F900DC9AAA /* IncognitoPayKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayKitTests.swift; sourceTree = "<group>"; };
 		E1A704E5256BB0F900DC9AAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1A704F1256BB60200DC9AAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayButton.swift; sourceTree = "<group>"; };
+		E1A7057B256BE36A00DC9AAA /* IncognitoPayButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayButtonActions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */,
 				E1A704D9256BB0F900DC9AAA /* Info.plist */,
+				E1A704F1256BB60200DC9AAA /* Images.xcassets */,
+				E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */,
+				E1A7057B256BE36A00DC9AAA /* IncognitoPayButtonActions.swift */,
 			);
 			path = IncognitoPayKit;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 				TargetAttributes = {
 					E1A704D4256BB0F800DC9AAA = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 					E1A704DD256BB0F900DC9AAA = {
 						CreatedOnToolsVersion = 12.2;
@@ -177,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */,
+				E1A7057C256BE36A00DC9AAA /* IncognitoPayButtonActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +354,7 @@
 		E1A704EA256BB0F900DC9AAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2NQBGG84BZ;
@@ -357,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nodancemonkey.IncognitoPayKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +380,7 @@
 		E1A704EB256BB0F900DC9AAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2NQBGG84BZ;
@@ -389,6 +405,7 @@
 		E1A704ED256BB0F900DC9AAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2NQBGG84BZ;
 				INFOPLIST_FILE = IncognitoPayKitTests/Info.plist;
@@ -407,6 +424,7 @@
 		E1A704EE256BB0F900DC9AAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2NQBGG84BZ;
 				INFOPLIST_FILE = IncognitoPayKitTests/Info.plist;

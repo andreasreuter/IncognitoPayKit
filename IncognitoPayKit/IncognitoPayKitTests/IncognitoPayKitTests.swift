@@ -3,6 +3,7 @@
 //  IncognitoPayKitTests
 //
 //  Created by Andreas Reuter on 23.11.20.
+//  Copyright © 2020 NO DANCE MONKEY. All rights reserved.
 //
 
 import XCTest
