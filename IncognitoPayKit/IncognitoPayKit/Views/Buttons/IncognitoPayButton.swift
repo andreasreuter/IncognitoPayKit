@@ -33,7 +33,7 @@ public class IncognitoPayButton: UIButton {
     /*
      * activate event handlers.
      */
-    self.addTarget(self, action: #selector(touchUpInside), for: .touchUpInside)
+    self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
   }
   
   public required init?(coder: NSCoder) {
@@ -44,10 +44,21 @@ public class IncognitoPayButton: UIButton {
     super.awakeFromNib()
   }
   
-  @objc final public func touchUpInside() {
-    print("Incognito Pay button touched.")
+  @objc final public func buttonTapped() {
+    print("Incognito Pay button tapped.")
     
-    let actionSheet = IncognitoPayButtonActions()
+    let actionSheet = IncognitoPayButtonActions(
+      importWallet: {
+        print("Incognito Pay import wallet.")
+      },
+      sendTo: {
+        print("Incognito Pay send coin to.")
+      },
+      receive: {
+        print("Incognito Pay receive coin.")
+        self.base.present(WalletQRCodeView(base: self.base, codeValue: "xyz"), animated: true)
+      }
+    )
     self.base.present(actionSheet, animated: true)
   }
   

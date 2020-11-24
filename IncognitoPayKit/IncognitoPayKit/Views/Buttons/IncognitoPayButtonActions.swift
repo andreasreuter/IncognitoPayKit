@@ -15,7 +15,17 @@ class IncognitoPayButtonActions: UIAlertController {
     }
   }
   
-  init() {
+  var importWallet: () -> Void
+  
+  var sendTo: () -> Void
+  
+  var receive: () -> Void
+  
+  init(importWallet: @escaping () -> Void, sendTo: @escaping () -> Void, receive: @escaping () -> Void) {
+    self.importWallet = importWallet
+    self.sendTo = sendTo
+    self.receive = receive
+    
     super.init(nibName: nil, bundle: nil)
     
     /*
@@ -40,33 +50,36 @@ class IncognitoPayButtonActions: UIAlertController {
     /*
      * import an existing wallet.
      */
-    let importWallet = formatOption(title: "Import my wallet", style: .default)
+    let importWallet = formatOption(title: "Import my wallet", style: .default, self.importWallet)
     addAction(importWallet)
     
     /*
      * send money to a friend, etc.
      */
-    let sendTo = formatOption(title: "Send to...", style: .default)
+    let sendTo = formatOption(title: "Send to...", style: .default, self.sendTo)
     addAction(sendTo)
     
     /*
      * receive money from a friend.
      */
-    let receive = formatOption(title: "Receive", style: .default)
+    let receive = formatOption(title: "Receive", style: .default, self.receive)
     addAction(receive)
     
     /*
      * cancel button closes action sheet.
      */
-    let cancel = formatOption(title: "Cancel", style: .cancel)
+    let cancel = formatOption(title: "Cancel", style: .cancel, nil)
     addAction(cancel)
     
   }
   
-  private func formatOption(title: String, style: UIAlertAction.Style) -> UIAlertAction {
+  private func formatOption(title: String, style: UIAlertAction.Style, _ handler: (() -> Void)?) -> UIAlertAction {
     UIAlertAction(
       title: title,
-      style: style
+      style: style,
+      handler: { _ in
+        handler?()
+      }
     )
   }
 }
