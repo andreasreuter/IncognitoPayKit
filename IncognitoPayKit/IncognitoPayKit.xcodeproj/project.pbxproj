@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E17E2F432572511C003CBA24 /* QRCodeCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E2F422572511C003CBA24 /* QRCodeCamera.swift */; };
+		E17E2F5425725EF1003CBA24 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E2F5325725EF1003CBA24 /* CornerView.swift */; };
 		E1A704DF256BB0F900DC9AAA /* IncognitoPayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */; };
 		E1A704E4256BB0F900DC9AAA /* IncognitoPayKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704E3256BB0F900DC9AAA /* IncognitoPayKitTests.swift */; };
 		E1A704E6256BB0F900DC9AAA /* IncognitoPayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E17E2F422572511C003CBA24 /* QRCodeCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeCamera.swift; sourceTree = "<group>"; };
+		E17E2F5325725EF1003CBA24 /* CornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerView.swift; sourceTree = "<group>"; };
 		E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IncognitoPayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncognitoPayKit.h; sourceTree = "<group>"; };
 		E1A704D9256BB0F900DC9AAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E17E2F5225725ED6003CBA24 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E17E2F422572511C003CBA24 /* QRCodeCamera.swift */,
+				E17E2F5325725EF1003CBA24 /* CornerView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		E1A704CB256BB0F800DC9AAA = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +116,7 @@
 		E1A7057F256C006600DC9AAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E17E2F5225725ED6003CBA24 /* Camera */,
 				E1A70581256C007E00DC9AAA /* Wallet */,
 				E1A70580256C007200DC9AAA /* Buttons */,
 			);
@@ -240,8 +254,10 @@
 			files = (
 				E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */,
 				E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */,
+				E17E2F5425725EF1003CBA24 /* CornerView.swift in Sources */,
 				E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */,
 				E1A7057C256BE36A00DC9AAA /* IncognitoPayButtonActions.swift in Sources */,
+				E17E2F432572511C003CBA24 /* QRCodeCamera.swift in Sources */,
 				E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +415,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = IncognitoPayKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -425,6 +442,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = IncognitoPayKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

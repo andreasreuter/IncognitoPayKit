@@ -53,6 +53,9 @@ public class IncognitoPayButton: UIButton {
       },
       sendTo: {
         print("Incognito Pay send coin to.")
+        let camera = QRCodeCamera()
+        camera.modalPresentationStyle = .fullScreen
+        self.base.present(camera, animated: true)
       },
       receive: {
         print("Incognito Pay receive coin.")
