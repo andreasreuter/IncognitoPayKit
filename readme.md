@@ -7,5 +7,7 @@ You are welcome to attend our [discussions](https://we.incognito.org/t/integrate
 ## Current Status
 :construction_worker: :construction: We started end of November 2020 and we are under construction.
 
+You can contact us at [nodancemonkey@gmail.com](mailto:nodancemonkey@gmail.com?subject=[IncognitoPayKit%20Questions]).
+
 ## Copyright
 Copyright © 2020 NO DANCE MONKEY. All rights reserved.
