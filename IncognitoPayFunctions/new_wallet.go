@@ -1,26 +1,43 @@
 package IncognitoPayFunctions
 
 import (
-  "encoding/json"
-  "fmt"
-  "html"
-  "net/http"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/incognitochain/go-incognito-sdk/incognitoclient"
 )
 
 func NewWallet(response http.ResponseWriter, request *http.Request) {
-  var wallet struct {
-    PrivateKey string `json:"privateKey"`
-  }
+	var wallet struct {
+		PrivateKey    string `json:"privateKey"`
+		PublicKey     string `json:"publicKey"`
+		ReadonlyKey   string `json:"readonlyKey"`
+		WalletAddress string `json:"walletAddress"`
+	}
 
-  if error := json.NewDecoder(request.Body).Decode(&wallet); error != nil {
-    fmt.Fprint(response, "Hello world!")
-    return
-  }
+	client := &http.Client{}
+	incognitoBlockchain := incognitoclient.NewBlockchain(
+		client,
+		"https://testnet.incognito.org/fullnode",
+		"",
+		"",
+		"",
+		"0000000000000000000000000000000000000000000000000000000000000004",
+	)
 
-  if wallet.PrivateKey == "" {
-    fmt.Fprint(response, "Hello world!")
-    return
-  }
+	address, pubKey, readonlyKey, privateKey, error := incognitoBlockchain.CreateWalletAddress()
 
-  fmt.Fprintf(response, "My wallet, %s!", html.EscapeString(wallet.PrivateKey))
+	if error != nil {
+		fmt.Fprint(response, error)
+		return
+	}
+
+	wallet.PrivateKey = privateKey
+	wallet.PublicKey = pubKey
+	wallet.ReadonlyKey = readonlyKey
+	wallet.WalletAddress = address
+
+	encoder := json.NewEncoder(response)
+	encoder.Encode(&wallet)
 }

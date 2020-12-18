@@ -7,7 +7,7 @@ You can find links to various Incognito SDK docs below.
 * [More Incognito SDK docs](https://docs.incognito.org/sdks/golang-sdk)
 
 # Gomobile
-:construction_worker: :construction: We are investigating in [Gomobile](https://github.com/golang/mobile) whether we can build the remote functions into our IncognitoPayKit instead of hosting them remotely.
+:construction_worker: :construction: We are investigating in [Gomobile](https://github.com/golang/mobile) whether we can build the remote functions more securely into our IncognitoPayKit instead of hosting them securely from remote.
 
 You can contact us at [nodancemonkey@gmail.com](mailto:nodancemonkey@gmail.com?subject=[Incognito%20Pay%20Functions%20Questions]).
 
