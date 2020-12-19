@@ -32,7 +32,7 @@ class IncognitoPayButtonActions: UIAlertController {
      * other function calls are available after super constructor
      * is called.
      */
-    self.title = nil
+    self.title = "Pay with Crypto privately. Powered by Incognito."
     self.message = nil
     
     self.options()
@@ -70,7 +70,6 @@ class IncognitoPayButtonActions: UIAlertController {
      */
     let cancel = formatOption(title: "Cancel", style: .cancel, nil)
     addAction(cancel)
-    
   }
   
   private func formatOption(title: String, style: UIAlertAction.Style, _ handler: (() -> Void)?) -> UIAlertAction {
