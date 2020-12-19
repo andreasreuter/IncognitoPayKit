@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/incognitochain/go-incognito-sdk/incognitoclient"
+	incognito "nodancemonkey.com/IncognitoPayFunctions/Incognito"
 )
 
 func NewWallet(response http.ResponseWriter, request *http.Request) {
@@ -16,15 +16,7 @@ func NewWallet(response http.ResponseWriter, request *http.Request) {
 		WalletAddress string `json:"walletAddress"`
 	}
 
-	client := &http.Client{}
-	incognitoBlockchain := incognitoclient.NewBlockchain(
-		client,
-		"https://testnet.incognito.org/fullnode",
-		"",
-		"",
-		"",
-		"0000000000000000000000000000000000000000000000000000000000000004",
-	)
+	incognitoBlockchain := incognito.IncognitoBlockchain()
 
 	address, pubKey, readonlyKey, privateKey, error := incognitoBlockchain.CreateWalletAddress()
 
