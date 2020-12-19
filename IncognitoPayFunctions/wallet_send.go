@@ -12,10 +12,15 @@ import (
 	"github.com/incognitochain/go-incognito-sdk/incognitoclient/entity"
 )
 
+//
+// WalletSend is hosted as Cloud Function. It takes a private key,
+// recipient's wallet address and amount of Privacy coins to send to
+// the wallet address. It responds with the transaction hash.
+//
 func WalletSend(response http.ResponseWriter, request *http.Request) {
 	var wallet struct {
 		PrivateKey             string `json:"privateKey"`
-		RecipientWalletAddress string `json:"recipientWalletAddress`
+		RecipientWalletAddress string `json:"recipientWalletAddress"`
 		PrivacyCoins           string `json:"privacyCoins"`
 	}
 

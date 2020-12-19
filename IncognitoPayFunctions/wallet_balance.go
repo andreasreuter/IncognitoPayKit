@@ -9,6 +9,10 @@ import (
 	incognito "nodancemonkey.com/IncognitoPayFunctions/Incognito"
 )
 
+//
+// WalletBalance is hosted as Cloud Function. It calculates the overall
+// balance of a wallet by its private key.
+//
 func WalletBalance(response http.ResponseWriter, request *http.Request) {
 	var wallet struct {
 		WalletAddress string `json:"walletAddress"`

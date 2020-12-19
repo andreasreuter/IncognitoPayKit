@@ -8,6 +8,11 @@ import (
 	incognito "nodancemonkey.com/IncognitoPayFunctions/Incognito"
 )
 
+//
+// NewWallet is hosted as Cloud Function. It creates a new wallet address
+// in Incognito blockchain and responds with private key, public key and
+// readonly key in addition to wallet address.
+//
 func NewWallet(response http.ResponseWriter, request *http.Request) {
 	var wallet struct {
 		PrivateKey    string `json:"privateKey"`
