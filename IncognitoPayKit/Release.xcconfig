@@ -1,0 +1,9 @@
+//
+//  Release.xcconfig
+//  IncognitoPayKit
+//
+//  Created by Andreas Reuter on 20.12.20.
+//  Copyright © 2020 NO DANCE MONKEY. All rights reserved.
+//
+
+REST_API_BASE_URL = https:/$()/us-central1-incognito-pay.cloudfunctions.net
