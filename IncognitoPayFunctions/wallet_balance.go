@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
 
 	incognito "nodancemonkey.com/IncognitoPayFunctions/Incognito"
 )
@@ -25,7 +24,9 @@ func WalletBalance(response http.ResponseWriter, request *http.Request) {
 
 	incognitoBlockchain := incognito.IncognitoBlockchain()
 
-	privacyCoins, error := incognitoBlockchain.GetBalanceByPaymentAddress(wallet.WalletAddress)
+	privacyCoins, error := incognitoBlockchain.GetBalance(
+		wallet.WalletAddress, "0000000000000000000000000000000000000000000000000000000000000004", // Privacy coin
+	)
 
 	if error != nil {
 		fmt.Fprint(response, error)
@@ -35,5 +36,5 @@ func WalletBalance(response http.ResponseWriter, request *http.Request) {
 	/*
 	 * cast a numeric value of Privacy coins to string.
 	 */
-	fmt.Fprint(response, strconv.FormatUint(privacyCoins, 10))
+	fmt.Fprint(response, privacyCoins)
 }
