@@ -49,7 +49,7 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 
 	incognitoBlockchain := incognito.IncognitoBlockchain()
 
-	tx, error := incognitoBlockchain.CreateAndSendConstantPrivacyTransaction(
+	transactionHash, error := incognitoBlockchain.CreateAndSendConstantPrivacyTransaction(
 		wallet.PrivateKey,
 		listPaymentAddresses,
 	)
@@ -59,5 +59,5 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	fmt.Fprint(response, tx)
+	fmt.Fprint(response, transactionHash)
 }
