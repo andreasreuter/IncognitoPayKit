@@ -38,12 +38,17 @@ func ImportWallet(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	childKey, _ := keyWallet.NewChildKey(0)
+	error = keyWallet.KeySet.InitFromPrivateKey(&keyWallet.KeySet.PrivateKey)
+
+	if error != nil {
+		fmt.Fprint(response, error)
+		return
+	}
 
 	importWallet.PrivateKey = wallet.PrivateKey
 	importWallet.PublicKey = hex.EncodeToString(privacy.GeneratePublicKey(keyWallet.KeySet.PrivateKey))
-	importWallet.ReadonlyKey = childKey.Base58CheckSerialize(wallet2.ReadonlyKeyType)
-	importWallet.WalletAddress = childKey.Base58CheckSerialize(wallet2.PaymentAddressType)
+	importWallet.ReadonlyKey = keyWallet.Base58CheckSerialize(wallet2.ReadonlyKeyType)
+	importWallet.WalletAddress = keyWallet.Base58CheckSerialize(wallet2.PaymentAddressType)
 
 	encoder := json.NewEncoder(response)
 	encoder.Encode(&importWallet)
