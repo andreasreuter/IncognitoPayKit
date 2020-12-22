@@ -53,9 +53,9 @@ public class IncognitoPayButton: UIButton {
       },
       sendTo: {
         print("Incognito Pay send coin to.")
-        let camera = QRCodeCamera()
-        camera.modalPresentationStyle = .fullScreen
-        self.base.present(camera, animated: true)
+        let contacts = ContactView(base: self.base, contactList: [])
+        contacts.modalPresentationStyle = .fullScreen
+        self.base.present(contacts, animated: true)
       },
       receive: {
         print("Incognito Pay receive coin.")
@@ -63,6 +63,16 @@ public class IncognitoPayButton: UIButton {
       }
     )
     self.base.present(actionSheet, animated: true)
+  }
+  
+  private func incognitoLogo() -> UIImage? {
+    let bundle = Bundle(for: IncognitoPayButton.self)
+    let logo = UIImage(
+      named: "incognito-black-dot",
+      in: bundle,
+      compatibleWith: nil
+    )
+    return (logo)
   }
   
   private func button() {
@@ -83,15 +93,5 @@ public class IncognitoPayButton: UIButton {
     
     imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: spacing)
     titleEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: 0)
-  }
-  
-  private func incognitoLogo() -> UIImage? {
-    let incognitoPayBundle = Bundle(for: IncognitoPayButton.self)
-    let incognitoLogo = UIImage(
-      named: "incognito-black-dot",
-      in: incognitoPayBundle,
-      compatibleWith: nil
-    )
-    return (incognitoLogo)
   }
 }

@@ -37,7 +37,13 @@ class WalletQRCodeView: UIViewController {
   }()
   
   fileprivate let closeButton: UIButton = {
-    let button = UIButton(type: .close)
+    let button = UIButton()
+    let xmark = UIImage(
+      systemName: "xmark",
+      withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+    )
+    button.setImage(xmark, for: .normal)
+    button.tintColor = .black
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)

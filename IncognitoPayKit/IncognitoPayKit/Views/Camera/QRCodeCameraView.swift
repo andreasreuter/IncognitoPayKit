@@ -1,5 +1,5 @@
 //
-//  QRCodeCamera.swift
+//  QRCodeCameraView.swift
 //  IncognitoPayKit
 //
 //  Created by Andreas Reuter on 28.11.20.
@@ -9,9 +9,25 @@
 import AVFoundation
 import UIKit
 
-class QRCodeCamera: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
   var captureSession: AVCaptureSession!
-
+  
+  private(set) var base: UIViewController
+  
+  required init(base: UIViewController) {
+    /*
+     * camera view cannot be overwritten, therefore it is mandatory
+     * to gain access to the outer view controller eg to show them.
+     */
+    self.base = base
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override var prefersStatusBarHidden: Bool {
     return true
   }
@@ -19,6 +35,19 @@ class QRCodeCamera: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
   override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
     return .portrait
   }
+  
+  fileprivate let closeButton: UIButton = {
+    let button = UIButton()
+    let xmark = UIImage(
+      systemName: "xmark",
+      withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+    )
+    button.setImage(xmark, for: .normal)
+    button.tintColor = .white
+    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return (button)
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -74,6 +103,17 @@ class QRCodeCamera: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
      * draw QR code corner frame, align to center of screen.
      */
     self.cornerFrame()
+    
+    /*
+     * close button, bring to top of camera.
+     */
+    view.addSubview(closeButton)
+    view.bringSubviewToFront(closeButton)
+    
+    NSLayoutConstraint.activate([
+      closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+      closeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+    ])
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -145,5 +185,10 @@ class QRCodeCamera: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
   func found(code: String) {
     print(code)
+  }
+  
+  @objc final public func closeButtonTapped() {
+    print("Camera close button tapped.")
+    self.dismiss(animated: true)
   }
 }

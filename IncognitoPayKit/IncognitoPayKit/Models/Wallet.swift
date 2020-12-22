@@ -6,8 +6,6 @@
 //  Copyright © 2020 NO DANCE MONKEY. All rights reserved.
 //
 
-import Foundation
-
 struct Wallet: Codable {
   let privateKey: String
   let publicKey: String
