@@ -3,6 +3,7 @@
 //  IncognitoPayKit
 //
 //  Created by Andreas Reuter on 21.12.20.
+//  Copyright © 2020 NO DANCE MONKEY. All rights reserved.
 //
 
 import UIKit
@@ -56,11 +57,11 @@ class ContactView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.view.backgroundColor = .white
+    view.backgroundColor = .white
     
     let tableView = ContactTableView([
-        Contact(firstName: "Andreas", lastName: "Reuter", image: "andireuter", walletAddress: "xyz"),
-        Contact(firstName: "Susi", lastName: "", walletAddress: "xyz"),
+        Contact(firstName: "Andreas", lastName: "Reuter", image: "andireuter", walletAddress: "12S6MRSkhxRPUEcd4wdbQi6iKYaKipbzi8bAqrEfC8XKQJ3MGrhPKgxgbupfVSQMVkdgWzPH7RHtJ7nF9nyvagtpFqCtRFREyThZgVP"),
+        Contact(firstName: "Susi", lastName: "", walletAddress: "12Ry2Q7DTimLyfBoGecMKzEAMVNtrLg1geZRypk8ynywvs6CU4j6JSNHMjv7XrnhsELEHoRUiDnhyEvE2AUBNavAVEzJ1aBBz54L3xM"),
         Contact(firstName: "Seppel", lastName: "", walletAddress: "xyz"),
         Contact(firstName: "Weihnachtsmann", lastName: "", walletAddress: "xyz"),
         Contact(firstName: "Jesus", lastName: "", walletAddress: "xyz"),
@@ -99,5 +100,9 @@ class ContactView: UIViewController {
   
   private func contactTapped(_ contact: Contact) {
     print("Contact row tapped.")
+    let payment = PaymentView(base: self, contact: contact)
+    payment.modalPresentationStyle = .fullScreen
+    payment.modalTransitionStyle = .crossDissolve
+    self.present(payment, animated: true)
   }
 }

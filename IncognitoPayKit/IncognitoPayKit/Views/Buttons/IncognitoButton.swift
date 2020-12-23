@@ -19,12 +19,6 @@ class IncognitoButton: UIButton {
     super.init(frame: CGRect.zero)
     
     /*
-     * other function calls are available after super constructor
-     * is called.
-     */
-    self.button()
-    
-    /*
      * activate event handlers.
      */
     self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -34,15 +28,7 @@ class IncognitoButton: UIButton {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override class func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
-  @objc final public func buttonTapped() {
-    print("Incognito button tapped.")
-  }
-  
-  private func button() {
+  override func willMove(toWindow newWindow: UIWindow?) {
     /*
      * design its normal button behaviour.
      */
@@ -58,5 +44,9 @@ class IncognitoButton: UIButton {
     frame.size = cgSize
     
     titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+  }
+  
+  @objc final public func buttonTapped() {
+    print("Incognito button tapped.")
   }
 }

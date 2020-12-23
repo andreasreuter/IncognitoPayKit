@@ -15,6 +15,9 @@
 		E12D39842590C256006D25EF /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D39832590C256006D25EF /* ContactView.swift */; };
 		E14DF655259220D900BADF50 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF654259220D900BADF50 /* Contact.swift */; };
 		E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */; };
+		E15947D42592B16A0091C335 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947D32592B16A0091C335 /* PaymentView.swift */; };
+		E15947E02592C08D0091C335 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */; };
+		E15947EA25939E850091C335 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947E925939E850091C335 /* InsetLabel.swift */; };
 		E1693745258EC4310098C525 /* WalletAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693744258EC4310098C525 /* WalletAPI.swift */; };
 		E169374B258EC77C0098C525 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E169374A258EC77C0098C525 /* Config.swift */; };
 		E169375A258ED6960098C525 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693759258ED6960098C525 /* Wallet.swift */; };
@@ -50,6 +53,9 @@
 		E12D39832590C256006D25EF /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		E14DF654259220D900BADF50 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
+		E15947D32592B16A0091C335 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
+		E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
+		E15947E925939E850091C335 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		E1693744258EC4310098C525 /* WalletAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAPI.swift; sourceTree = "<group>"; };
 		E169374A258EC77C0098C525 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		E169374E258EC9430098C525 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -108,6 +114,15 @@
 				E12D39832590C256006D25EF /* ContactView.swift */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		E15947D22592B14C0091C335 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				E15947D32592B16A0091C335 /* PaymentView.swift */,
+				E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		E1693743258EC3FD0098C525 /* Networking */ = {
@@ -183,11 +198,13 @@
 		E1A7057F256C006600DC9AAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E15947D22592B14C0091C335 /* Payment */,
 				E12D3976259002FF006D25EF /* Contacts */,
 				E17E2F5225725ED6003CBA24 /* Camera */,
 				E1A70581256C007E00DC9AAA /* Wallet */,
 				E1A70580256C007200DC9AAA /* Buttons */,
 				E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */,
+				E15947E925939E850091C335 /* InsetLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,12 +349,15 @@
 				E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */,
 				E169374B258EC77C0098C525 /* Config.swift in Sources */,
 				E1A7057C256BE36A00DC9AAA /* IncognitoPayButtonActions.swift in Sources */,
+				E15947D42592B16A0091C335 /* PaymentView.swift in Sources */,
 				E10A30A22572F2D500B03822 /* Keychain.swift in Sources */,
+				E15947EA25939E850091C335 /* InsetLabel.swift in Sources */,
 				E17E2F432572511C003CBA24 /* QRCodeCameraView.swift in Sources */,
 				E12D397E25900378006D25EF /* ContactTableCell.swift in Sources */,
 				E1693745258EC4310098C525 /* WalletAPI.swift in Sources */,
 				E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */,
 				E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */,
+				E15947E02592C08D0091C335 /* PaymentConfirmView.swift in Sources */,
 				E12D397825900336006D25EF /* ContactTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,12 +25,6 @@ public class IncognitoPayButton: UIButton {
     super.init(frame: CGRect.zero)
     
     /*
-     * other function calls are available after super constructor
-     * is called.
-     */
-    self.button()
-    
-    /*
      * activate event handlers.
      */
     self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -38,10 +32,6 @@ public class IncognitoPayButton: UIButton {
   
   public required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-  
-  public override class func awakeFromNib() {
-    super.awakeFromNib()
   }
   
   @objc final public func buttonTapped() {
@@ -75,7 +65,7 @@ public class IncognitoPayButton: UIButton {
     return (logo)
   }
   
-  private func button() {
+  public override func willMove(toWindow newWindow: UIWindow?) {
     /*
      * design its normal button behaviour.
      */
