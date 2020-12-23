@@ -79,21 +79,18 @@ class WalletQRCodeView: UIViewController {
     view.addSubview(closeButton)
     view.addSubview(stackView)
     
-    copyButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    copyButton.leadingAnchor.constraint(equalTo: stackView.layoutMarginsGuide.leadingAnchor).isActive = true
-    copyButton.trailingAnchor.constraint(equalTo: stackView.layoutMarginsGuide.trailingAnchor).isActive = true
-    
-    closeButton.topAnchor.constraint(
-      equalTo: view.layoutMarginsGuide.topAnchor,
-      constant: 20
-    ).isActive = true
-    
-    closeButton.leadingAnchor.constraint(
-      equalTo: view.layoutMarginsGuide.leadingAnchor
-    ).isActive = true
-    
-    stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    NSLayoutConstraint.activate([
+      copyButton.heightAnchor.constraint(equalToConstant: 70),
+      copyButton.leadingAnchor.constraint(equalTo: stackView.layoutMarginsGuide.leadingAnchor),
+      copyButton.trailingAnchor.constraint(equalTo: stackView.layoutMarginsGuide.trailingAnchor),
+      closeButton.topAnchor.constraint(
+        equalTo: view.layoutMarginsGuide.topAnchor,
+        constant: 20
+      ),
+      closeButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+      stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    ])
   }
   
   @objc final public func closeButtonTapped() {
