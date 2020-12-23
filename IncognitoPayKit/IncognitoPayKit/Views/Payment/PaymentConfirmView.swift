@@ -109,19 +109,45 @@ class PaymentConfirmView: UIViewController {
       image.widthAnchor.constraint(equalToConstant: 80),
       image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
       image.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      titleLabel.topAnchor.constraint(equalTo: image.safeAreaLayoutGuide.bottomAnchor, constant: 8),
+      
+      titleLabel.topAnchor.constraint(
+        equalTo: image.safeAreaLayoutGuide.bottomAnchor,
+        constant: 8
+      ),
       titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      amountLabel.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor, constant: 30),
+      
+      amountLabel.topAnchor.constraint(
+        equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor,
+        constant: 30
+      ),
       amountLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      currencyButton.topAnchor.constraint(equalTo: amountLabel.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+      
+      currencyButton.topAnchor.constraint(
+        equalTo: amountLabel.safeAreaLayoutGuide.bottomAnchor,
+        constant: 10
+      ),
       currencyButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      walletAddressLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-      walletAddressLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-      walletAddressLabel.topAnchor.constraint(equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor, constant: 30),
+      
+      walletAddressLabel.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        constant: 30
+      ),
+      walletAddressLabel.trailingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+        constant: -30
+      ),
+      walletAddressLabel.topAnchor.constraint(
+        equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor,
+        constant: 30
+      ),
       walletAddressLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      
       confirmButton.heightAnchor.constraint(equalToConstant: 70),
       confirmButton.widthAnchor.constraint(equalToConstant: 150),
-      confirmButton.topAnchor.constraint(equalTo: walletAddressLabel.safeAreaLayoutGuide.bottomAnchor, constant: 100),
+      confirmButton.topAnchor.constraint(
+        equalTo: walletAddressLabel.safeAreaLayoutGuide.bottomAnchor,
+        constant: 100
+      ),
       confirmButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
     ])
   }

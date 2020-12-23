@@ -51,7 +51,10 @@ class ContactTableCell: UITableViewCell {
     
     NSLayoutConstraint.activate([
       heightAnchor.constraint(equalToConstant: 58),
-      titleLabel.leadingAnchor.constraint(equalTo: contentImage.safeAreaLayoutGuide.trailingAnchor, constant: 20),
+      titleLabel.leadingAnchor.constraint(
+        equalTo: contentImage.safeAreaLayoutGuide.trailingAnchor,
+        constant: 20
+      ),
       titleLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
     ])
   }

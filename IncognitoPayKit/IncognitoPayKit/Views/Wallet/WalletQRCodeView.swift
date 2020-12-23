@@ -83,11 +83,13 @@ class WalletQRCodeView: UIViewController {
       copyButton.heightAnchor.constraint(equalToConstant: 70),
       copyButton.leadingAnchor.constraint(equalTo: stackView.layoutMarginsGuide.leadingAnchor),
       copyButton.trailingAnchor.constraint(equalTo: stackView.layoutMarginsGuide.trailingAnchor),
+      
       closeButton.topAnchor.constraint(
         equalTo: view.layoutMarginsGuide.topAnchor,
         constant: 20
       ),
       closeButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+      
       stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
       stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])

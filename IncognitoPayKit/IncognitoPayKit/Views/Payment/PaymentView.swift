@@ -82,18 +82,40 @@ class PaymentView: UIViewController, UITextFieldDelegate {
     view.addSubview(previewButton)
     
     NSLayoutConstraint.activate([
-      closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-      closeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-      contactInfo.topAnchor.constraint(equalTo: closeButton.safeAreaLayoutGuide.bottomAnchor, constant: 20),
+      closeButton.topAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.topAnchor,
+        constant: 20
+      ),
+      closeButton.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        constant: 20
+      ),
+      
+      contactInfo.topAnchor.constraint(
+        equalTo: closeButton.safeAreaLayoutGuide.bottomAnchor,
+        constant: 20
+      ),
       contactInfo.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      
       amountText.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
-      amountText.topAnchor.constraint(equalTo: contactInfo.safeAreaLayoutGuide.bottomAnchor, constant: 25),
+      amountText.topAnchor.constraint(
+        equalTo: contactInfo.safeAreaLayoutGuide.bottomAnchor,
+        constant: 25
+      ),
       amountText.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      currencyButton.topAnchor.constraint(equalTo: amountText.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+      
+      currencyButton.topAnchor.constraint(
+        equalTo: amountText.safeAreaLayoutGuide.bottomAnchor,
+        constant: 10
+      ),
       currencyButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      
       previewButton.heightAnchor.constraint(equalToConstant: 70),
       previewButton.widthAnchor.constraint(equalToConstant: 150),
-      previewButton.topAnchor.constraint(equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor, constant: 130),
+      previewButton.topAnchor.constraint(
+        equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor,
+        constant: 130
+      ),
       previewButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
     ])
   }

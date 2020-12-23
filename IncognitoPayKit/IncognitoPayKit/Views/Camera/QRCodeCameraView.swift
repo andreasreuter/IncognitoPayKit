@@ -111,8 +111,14 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     view.bringSubviewToFront(closeButton)
     
     NSLayoutConstraint.activate([
-      closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-      closeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+      closeButton.topAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.topAnchor,
+        constant: 20
+      ),
+      closeButton.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        constant: 20
+      )
     ])
   }
   
