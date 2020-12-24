@@ -1,9 +1,9 @@
 //
 //  WalletDataKeychain.swift
-//  Apfelpatient
+//  IncognitoPayKit
 //
-//  Created by Andreas Reuter on 10.07.20.
-//  Copyright © 2020 Milan Jovicic. All rights reserved.
+//  Created by Andreas Reuter on 28.11.20.
+//  Copyright © 2020 NO DANCE MONKEY. All rights reserved.
 //
 
 import Foundation
