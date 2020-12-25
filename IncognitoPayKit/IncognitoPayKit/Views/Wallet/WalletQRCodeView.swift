@@ -36,14 +36,14 @@ class WalletQRCodeView: UIViewController {
     return (stack)
   }()
   
-  fileprivate let closeButton: UIButton = {
+  fileprivate lazy var closeButton: UIButton = {
     let button = UIButton()
     let xmark = UIImage(
       systemName: "xmark",
       withConfiguration: UIImage.SymbolConfiguration(scale: .large)
     )
     button.setImage(xmark, for: .normal)
-    button.tintColor = .black
+    button.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
@@ -54,6 +54,27 @@ class WalletQRCodeView: UIViewController {
     button.addTarget(self, action: #selector(copyButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
+  }()
+  
+  fileprivate lazy var copiedImage: UIImageView = {
+    let checkmark = UIImage(
+      systemName: "checkmark.circle.fill",
+      withConfiguration: UIImage.SymbolConfiguration(pointSize: 110)
+    )
+    
+    let imageView = UIImageView(image: checkmark)
+    imageView.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return (imageView)
+  }()
+  
+  fileprivate lazy var copiedText: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+    label.text = "Copied!"
+    label.textColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return (label)
   }()
   
   /*
@@ -71,7 +92,7 @@ class WalletQRCodeView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.view.backgroundColor = .white
+    view.backgroundColor = (traitCollection.userInterfaceStyle == .light ? .white : .black)
     
     stackView.addArrangedSubview(walletQRCode)
     stackView.addArrangedSubview(copyButton)
@@ -105,6 +126,40 @@ class WalletQRCodeView: UIViewController {
     let pasteboard = UIPasteboard.general
     pasteboard.string = codeValue
     
-    sender.backgroundColor = UIColor.systemGreen
+    let alert = confirmWhenCopied()
+    self.present(alert, animated: true)
+    
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+      alert.dismiss(animated: true) {
+        self.dismiss(animated: true)
+      }
+    }
+  }
+  
+  private func confirmWhenCopied() -> UIAlertController {
+    let alert = UIAlertController(title: "", message: nil, preferredStyle: .alert)
+    alert.view.addSubview(copiedImage)
+    alert.view.addSubview(copiedText)
+    
+    let alertWidth = view.bounds.width / 1.5
+    
+    NSLayoutConstraint.activate([
+      copiedImage.topAnchor.constraint(
+        equalTo: alert.view.safeAreaLayoutGuide.topAnchor,
+        constant: 50
+      ),
+      copiedImage.centerXAnchor.constraint(equalTo: alert.view.safeAreaLayoutGuide.centerXAnchor),
+      
+      copiedText.topAnchor.constraint(
+        equalTo: copiedImage.safeAreaLayoutGuide.bottomAnchor,
+        constant: 15
+      ),
+      copiedText.centerXAnchor.constraint(equalTo: alert.view.safeAreaLayoutGuide.centerXAnchor),
+      
+      alert.view.heightAnchor.constraint(equalToConstant: alertWidth),
+      alert.view.widthAnchor.constraint(equalToConstant: alertWidth)
+    ])
+    
+    return (alert)
   }
 }
