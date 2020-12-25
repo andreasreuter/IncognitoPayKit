@@ -1,30 +1,27 @@
 //
-//  IncognitoPayButtonActions.swift
+//  NewWalletOptions.swift
 //  IncognitoPayKit
 //
-//  Created by Andreas Reuter on 23.11.20.
+//  Created by Andreas Reuter on 25.12.20.
 //  Copyright © 2020 NO DANCE MONKEY. All rights reserved.
 //
 
 import UIKit
 
-class IncognitoPayButtonActions: UIAlertController {
+class NewWalletOptions: UIAlertController {
   override var preferredStyle: UIAlertController.Style {
     get {
       return (.actionSheet)
     }
   }
   
+  var newWallet: () -> Void
+  
   var importWallet: () -> Void
   
-  var sendTo: () -> Void
-  
-  var receive: () -> Void
-  
-  init(importWallet: @escaping () -> Void, sendTo: @escaping () -> Void, receive: @escaping () -> Void) {
+  init(newWallet: @escaping () -> Void, importWallet: @escaping () -> Void) {
+    self.newWallet = newWallet
     self.importWallet = importWallet
-    self.sendTo = sendTo
-    self.receive = receive
     
     super.init(nibName: nil, bundle: nil)
     
@@ -33,7 +30,7 @@ class IncognitoPayButtonActions: UIAlertController {
      * is called.
      */
     self.title = "Pay with Crypto privately. Powered by Incognito."
-    self.message = nil
+    self.message = "Before you can pay the first time. You must either create a new wallet or import a wallet."
     
     self.options()
   }
@@ -42,28 +39,18 @@ class IncognitoPayButtonActions: UIAlertController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override class func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
   private func options() {
+    /*
+     * create a new wallet.
+     */
+    let newWallet = formatOption(title: "New wallet", style: .default, self.newWallet)
+    addAction(newWallet)
+    
     /*
      * import an existing wallet.
      */
     let importWallet = formatOption(title: "Import my wallet", style: .default, self.importWallet)
     addAction(importWallet)
-    
-    /*
-     * send money to a friend, etc.
-     */
-    let sendTo = formatOption(title: "Send to...", style: .default, self.sendTo)
-    addAction(sendTo)
-    
-    /*
-     * receive money from a friend.
-     */
-    let receive = formatOption(title: "Receive", style: .default, self.receive)
-    addAction(receive)
     
     /*
      * cancel button closes action sheet.

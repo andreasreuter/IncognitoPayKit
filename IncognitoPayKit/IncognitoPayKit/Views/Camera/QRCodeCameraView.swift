@@ -59,6 +59,23 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
+    /*
+     * close button, bring to top of camera.
+     */
+    view.addSubview(closeButton)
+    view.bringSubviewToFront(closeButton)
+    
+    NSLayoutConstraint.activate([
+      closeButton.topAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.topAnchor,
+        constant: 20
+      ),
+      closeButton.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        constant: 20
+      )
+    ])
+    
     guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
       print("Incognito pay abort to initialise QR code camera.")
       failed()
@@ -103,23 +120,6 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
      * draw QR code corner frame, align to center of screen.
      */
     self.cornerFrame()
-    
-    /*
-     * close button, bring to top of camera.
-     */
-    view.addSubview(closeButton)
-    view.bringSubviewToFront(closeButton)
-    
-    NSLayoutConstraint.activate([
-      closeButton.topAnchor.constraint(
-        equalTo: view.safeAreaLayoutGuide.topAnchor,
-        constant: 20
-      ),
-      closeButton.leadingAnchor.constraint(
-        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-        constant: 20
-      )
-    ])
   }
   
   override func viewWillAppear(_ animated: Bool) {

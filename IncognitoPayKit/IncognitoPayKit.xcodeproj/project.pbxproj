@@ -13,11 +13,14 @@
 		E12D397825900336006D25EF /* ContactTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D397725900336006D25EF /* ContactTableView.swift */; };
 		E12D397E25900378006D25EF /* ContactTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D397D25900378006D25EF /* ContactTableCell.swift */; };
 		E12D39842590C256006D25EF /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D39832590C256006D25EF /* ContactView.swift */; };
+		E14B7D5F25960EDF005CE0F5 /* NewWalletOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */; };
 		E14DF655259220D900BADF50 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF654259220D900BADF50 /* Contact.swift */; };
 		E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */; };
 		E15947D42592B16A0091C335 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947D32592B16A0091C335 /* PaymentView.swift */; };
 		E15947E02592C08D0091C335 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */; };
 		E15947EA25939E850091C335 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947E925939E850091C335 /* InsetLabel.swift */; };
+		E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E548B25961CD000B1D5D8 /* NewWallet.swift */; };
+		E15E54A625967C8700B1D5D8 /* UIView+BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */; };
 		E1693745258EC4310098C525 /* WalletAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693744258EC4310098C525 /* WalletAPI.swift */; };
 		E169374B258EC77C0098C525 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E169374A258EC77C0098C525 /* Config.swift */; };
 		E169375A258ED6960098C525 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693759258ED6960098C525 /* Wallet.swift */; };
@@ -28,7 +31,7 @@
 		E1A704E6256BB0F900DC9AAA /* IncognitoPayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A704F1256BB60200DC9AAA /* Images.xcassets */; };
 		E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */; };
-		E1A7057C256BE36A00DC9AAA /* IncognitoPayButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A7057B256BE36A00DC9AAA /* IncognitoPayButtonActions.swift */; };
+		E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */; };
 		E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70582256C00B900DC9AAA /* WalletQRCode.swift */; };
 		E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */; };
 		E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8A3C1256D0B07009BDCB5 /* IncognitoButton.swift */; };
@@ -51,11 +54,14 @@
 		E12D397725900336006D25EF /* ContactTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableView.swift; sourceTree = "<group>"; };
 		E12D397D25900378006D25EF /* ContactTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableCell.swift; sourceTree = "<group>"; };
 		E12D39832590C256006D25EF /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletOptions.swift; sourceTree = "<group>"; };
 		E14DF654259220D900BADF50 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
 		E15947D32592B16A0091C335 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		E15947E925939E850091C335 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		E15E548B25961CD000B1D5D8 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
+		E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BlurView.swift"; sourceTree = "<group>"; };
 		E1693744258EC4310098C525 /* WalletAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAPI.swift; sourceTree = "<group>"; };
 		E169374A258EC77C0098C525 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		E169374E258EC9430098C525 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -71,7 +77,7 @@
 		E1A704E5256BB0F900DC9AAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1A704F1256BB60200DC9AAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayButton.swift; sourceTree = "<group>"; };
-		E1A7057B256BE36A00DC9AAA /* IncognitoPayButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayButtonActions.swift; sourceTree = "<group>"; };
+		E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayOptions.swift; sourceTree = "<group>"; };
 		E1A70582256C00B900DC9AAA /* WalletQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQRCode.swift; sourceTree = "<group>"; };
 		E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQRCodeView.swift; sourceTree = "<group>"; };
 		E1E8A3C1256D0B07009BDCB5 /* IncognitoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoButton.swift; sourceTree = "<group>"; };
@@ -96,14 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E10A30A02572F28A00B03822 /* Keychain */ = {
+		E10A30A02572F28A00B03822 /* Credential Storage */ = {
 			isa = PBXGroup;
 			children = (
 				E10A30A52572F41200B03822 /* WalletData.swift */,
 				E10A30A62572F41200B03822 /* WalletDataKeychain.swift */,
 				E10A30A12572F2D500B03822 /* Keychain.swift */,
 			);
-			path = Keychain;
+			path = "Credential Storage";
 			sourceTree = "<group>";
 		};
 		E12D3976259002FF006D25EF /* Contacts */ = {
@@ -114,6 +120,15 @@
 				E12D39832590C256006D25EF /* ContactView.swift */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		E14B7D5D25960E54005CE0F5 /* Incognito Pay Button */ = {
+			isa = PBXGroup;
+			children = (
+				E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */,
+				E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */,
+			);
+			path = "Incognito Pay Button";
 			sourceTree = "<group>";
 		};
 		E15947D22592B14C0091C335 /* Payment */ = {
@@ -176,12 +191,14 @@
 			children = (
 				E1693758258ED66B0098C525 /* Models */,
 				E1693743258EC3FD0098C525 /* Networking */,
-				E10A30A02572F28A00B03822 /* Keychain */,
+				E10A30A02572F28A00B03822 /* Credential Storage */,
 				E1A7057F256C006600DC9AAA /* Views */,
 				E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */,
 				E1A704D9256BB0F900DC9AAA /* Info.plist */,
 				E1A704F1256BB60200DC9AAA /* Images.xcassets */,
 				E169374A258EC77C0098C525 /* Config.swift */,
+				E15E548B25961CD000B1D5D8 /* NewWallet.swift */,
+				E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */,
 			);
 			path = IncognitoPayKit;
 			sourceTree = "<group>";
@@ -198,6 +215,7 @@
 		E1A7057F256C006600DC9AAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E14B7D5D25960E54005CE0F5 /* Incognito Pay Button */,
 				E15947D22592B14C0091C335 /* Payment */,
 				E12D3976259002FF006D25EF /* Contacts */,
 				E17E2F5225725ED6003CBA24 /* Camera */,
@@ -213,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */,
-				E1A7057B256BE36A00DC9AAA /* IncognitoPayButtonActions.swift */,
 				E1E8A3C1256D0B07009BDCB5 /* IncognitoButton.swift */,
 			);
 			path = Buttons;
@@ -339,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E169375A258ED6960098C525 /* Wallet.swift in Sources */,
+				E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */,
 				E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */,
 				E14DF655259220D900BADF50 /* Contact.swift in Sources */,
 				E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */,
@@ -348,14 +366,16 @@
 				E10A30A82572F41200B03822 /* WalletDataKeychain.swift in Sources */,
 				E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */,
 				E169374B258EC77C0098C525 /* Config.swift in Sources */,
-				E1A7057C256BE36A00DC9AAA /* IncognitoPayButtonActions.swift in Sources */,
+				E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */,
 				E15947D42592B16A0091C335 /* PaymentView.swift in Sources */,
+				E14B7D5F25960EDF005CE0F5 /* NewWalletOptions.swift in Sources */,
 				E10A30A22572F2D500B03822 /* Keychain.swift in Sources */,
 				E15947EA25939E850091C335 /* InsetLabel.swift in Sources */,
 				E17E2F432572511C003CBA24 /* QRCodeCameraView.swift in Sources */,
 				E12D397E25900378006D25EF /* ContactTableCell.swift in Sources */,
 				E1693745258EC4310098C525 /* WalletAPI.swift in Sources */,
 				E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */,
+				E15E54A625967C8700B1D5D8 /* UIView+BlurView.swift in Sources */,
 				E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */,
 				E15947E02592C08D0091C335 /* PaymentConfirmView.swift in Sources */,
 				E12D397825900336006D25EF /* ContactTableView.swift in Sources */,
@@ -507,7 +527,6 @@
 		};
 		E1A704EA256BB0F900DC9AAA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E169374E258EC9430098C525 /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,7 +554,6 @@
 		};
 		E1A704EB256BB0F900DC9AAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E169374F258EC9590098C525 /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -562,7 +580,6 @@
 		};
 		E1A704ED256BB0F900DC9AAA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E169374E258EC9430098C525 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -582,7 +599,6 @@
 		};
 		E1A704EE256BB0F900DC9AAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E169374F258EC9590098C525 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
