@@ -99,7 +99,7 @@ public class IncognitoPayButton: UIButton {
     /*
      * design its normal button behaviour.
      */
-    blurView()
+    blurView(alwaysLight: true)
     
     let logoView = incognitoLogo()
     addSubview(logoView)

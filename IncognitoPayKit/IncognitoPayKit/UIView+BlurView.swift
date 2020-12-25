@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-  func blurView() {
+  func blurView(alwaysLight: Bool = false) {
     /*
      * only apply the blur if the user hasn't
      * disabled transparency effects.
@@ -17,7 +17,7 @@ extension UIView {
       backgroundColor = .clear
       
       var blurEffect = UIBlurEffect(style: .systemChromeMaterialLight)
-      if (traitCollection.userInterfaceStyle == .dark) {
+      if (alwaysLight == false && traitCollection.userInterfaceStyle == .dark) {
         blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
       }
       
