@@ -28,20 +28,20 @@ class ContactView: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  fileprivate let closeButton: UIButton = {
+  fileprivate lazy var closeButton: UIButton = {
     let button = UIButton()
     let xmark = UIImage(
       systemName: "xmark",
       withConfiguration: UIImage.SymbolConfiguration(scale: .large)
     )
     button.setImage(xmark, for: .normal)
-    button.tintColor = .black
+    button.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
   
-  fileprivate let cameraButton: UIButton = {
+  fileprivate lazy var cameraButton: UIButton = {
     let button = UIButton()
     let xmark = UIImage(
       systemName: "qrcode.viewfinder",
@@ -49,6 +49,7 @@ class ContactView: UIViewController {
     )
     button.setImage(xmark, for: .normal)
     button.tintColor = .black
+    button.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
     button.addTarget(self, action: #selector(cameraButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
@@ -57,7 +58,7 @@ class ContactView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
+    view.blurView()
     
     let tableView = ContactTableView([
         Contact(firstName: "Andreas", lastName: "Reuter", image: "andireuter", walletAddress: "12S6MRSkhxRPUEcd4wdbQi6iKYaKipbzi8bAqrEfC8XKQJ3MGrhPKgxgbupfVSQMVkdgWzPH7RHtJ7nF9nyvagtpFqCtRFREyThZgVP"),
@@ -124,7 +125,7 @@ class ContactView: UIViewController {
   private func contactTapped(_ contact: Contact) {
     print("Contact row tapped.")
     let payment = PaymentView(base: self, contact: contact)
-    payment.modalPresentationStyle = .fullScreen
+    payment.modalPresentationStyle = .overCurrentContext
     payment.modalTransitionStyle = .crossDissolve
     self.present(payment, animated: true)
   }

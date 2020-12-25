@@ -33,9 +33,12 @@ class IncognitoButton: UIButton {
      * design its normal button behaviour.
      */
     setTitle(self.title, for: .normal)
-    setTitleColor(UIColor.white, for: .normal)
+    setTitleColor(
+      (traitCollection.userInterfaceStyle == .light ? .white : .black),
+      for: .normal
+    )
     titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-    backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+    backgroundColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
     layer.cornerRadius = 8
     
     /*

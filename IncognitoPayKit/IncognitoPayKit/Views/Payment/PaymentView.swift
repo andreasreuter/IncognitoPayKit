@@ -28,10 +28,13 @@ class PaymentView: UIViewController, UITextFieldDelegate {
     fatalError("init(coder:) has not been implemented")
   }
   
-  fileprivate let closeButton: UIButton = {
+  fileprivate lazy var closeButton: UIButton = {
     let button = UIButton()
     button.setTitle("Cancel", for: .normal)
-    button.setTitleColor(.black, for: .normal)
+    button.setTitleColor(
+      (traitCollection.userInterfaceStyle == .light ? .black : .white),
+      for: .normal
+    )
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
@@ -39,7 +42,7 @@ class PaymentView: UIViewController, UITextFieldDelegate {
   
   fileprivate lazy var contactInfo: UILabel = {
     let label = UILabel()
-    label.text = "You will send to \(contact.firstName) \(contact.lastName)"
+    label.text = "You send to \(contact.firstName) \(contact.lastName)"
     label.translatesAutoresizingMaskIntoConstraints = false
     return (label)
   }()
@@ -63,7 +66,7 @@ class PaymentView: UIViewController, UITextFieldDelegate {
   }()
   
   fileprivate let previewButton: UIButton = {
-    let button = IncognitoButton(title: "Preview")
+    let button = IncognitoButton(title: "Show preview")
     button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     button.addTarget(self, action: #selector(previewButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +76,7 @@ class PaymentView: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
+    view.blurView()
     
     view.addSubview(closeButton)
     view.addSubview(contactInfo)
@@ -127,9 +130,9 @@ class PaymentView: UIViewController, UITextFieldDelegate {
   
   @objc final public func previewButtonTapped() {
     print("Payment preview button tapped.")
-    let payment = PaymentConfirmView(base: self, contact: contact, amount: amountText.text!)
-    payment.modalPresentationStyle = .fullScreen
-    payment.modalTransitionStyle = .crossDissolve
-    self.present(payment, animated: true)
+    let paymentConfirm = PaymentConfirmView(base: self, contact: contact, amount: amountText.text!)
+    paymentConfirm.modalPresentationStyle = .overCurrentContext
+    paymentConfirm.modalTransitionStyle = .crossDissolve
+    self.present(paymentConfirm, animated: true)
   }
 }

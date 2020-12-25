@@ -31,6 +31,18 @@ class PaymentConfirmView: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
   
+  fileprivate lazy var closeButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("Cancel", for: .normal)
+    button.setTitleColor(
+      (traitCollection.userInterfaceStyle == .light ? .black : .white),
+      for: .normal
+    )
+    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return (button)
+  }()
+  
   fileprivate lazy var image: UIImageView = {
     let bundle = Bundle(for: ContactTableCell.self)
     
@@ -72,16 +84,36 @@ class PaymentConfirmView: UIViewController {
     return (button)
   }()
   
-  fileprivate lazy var walletAddressLabel: UILabel = {
-    let label = InsetLabel(frame: .zero)
-    label.insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+  fileprivate lazy var walletAddress: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    
+    let title = UILabel()
+    title.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+    title.text = "Verify wallet address again"
+    title.translatesAutoresizingMaskIntoConstraints = false
+    
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 17)
     label.text = contact.walletAddress
-    label.layer.cornerRadius = 14
-    label.layer.masksToBounds = true
+    label.textAlignment = .justified
     label.numberOfLines = 0
-    label.backgroundColor = .systemGray6
+    label.lineBreakMode = .byWordWrapping
+    label.sizeToFit()
     label.translatesAutoresizingMaskIntoConstraints = false
-    return (label)
+    
+    view.addSubview(title)
+    view.addSubview(label)
+    
+    NSLayoutConstraint.activate([
+      title.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      
+      label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      label.topAnchor.constraint(equalTo: title.safeAreaLayoutGuide.bottomAnchor, constant: 5)
+    ])
+    
+    return (view)
   }()
   
   fileprivate let confirmButton: UIButton = {
@@ -95,19 +127,32 @@ class PaymentConfirmView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
+    view.blurView()
     
+    view.addSubview(closeButton)
     view.addSubview(image)
     view.addSubview(titleLabel)
     view.addSubview(amountLabel)
     view.addSubview(currencyButton)
-    view.addSubview(walletAddressLabel)
+    view.addSubview(walletAddress)
     view.addSubview(confirmButton)
     
     NSLayoutConstraint.activate([
+      closeButton.topAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.topAnchor,
+        constant: 20
+      ),
+      closeButton.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        constant: 20
+      ),
+      
       image.heightAnchor.constraint(equalToConstant: 80),
       image.widthAnchor.constraint(equalToConstant: 80),
-      image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+      image.topAnchor.constraint(
+        equalTo: closeButton.safeAreaLayoutGuide.bottomAnchor,
+        constant: 20
+      ),
       image.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
       
       titleLabel.topAnchor.constraint(
@@ -128,31 +173,49 @@ class PaymentConfirmView: UIViewController {
       ),
       currencyButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
       
-      walletAddressLabel.leadingAnchor.constraint(
+      walletAddress.leadingAnchor.constraint(
         equalTo: view.safeAreaLayoutGuide.leadingAnchor,
         constant: 30
       ),
-      walletAddressLabel.trailingAnchor.constraint(
+      walletAddress.trailingAnchor.constraint(
         equalTo: view.safeAreaLayoutGuide.trailingAnchor,
         constant: -30
       ),
-      walletAddressLabel.topAnchor.constraint(
+      walletAddress.topAnchor.constraint(
         equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor,
-        constant: 30
+        constant: 100
       ),
-      walletAddressLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      walletAddress.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
       
       confirmButton.heightAnchor.constraint(equalToConstant: 70),
       confirmButton.widthAnchor.constraint(equalToConstant: 150),
       confirmButton.topAnchor.constraint(
-        equalTo: walletAddressLabel.safeAreaLayoutGuide.bottomAnchor,
-        constant: 100
+        greaterThanOrEqualTo: walletAddress.safeAreaLayoutGuide.bottomAnchor,
+        constant: 200
+      ),
+      confirmButton.bottomAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+        constant: -30
       ),
       confirmButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
     ])
   }
   
+  @objc final public func closeButtonTapped() {
+    print("Payment close button tapped.")
+    self.dismiss(animated: true)
+  }
+  
   @objc final public func confirmButtonTapped() {
     print("Payment confirm button tapped.")
+    
+    do {
+      let keychain = WalletDataKeychain()
+      let walletData = try keychain.retrieve()
+      
+      print(walletData.privateKey)
+    } catch {
+      print("Error load wallet from Keychain: \(error).")
+    }
   }
 }
