@@ -47,7 +47,7 @@ class PaymentConfirmView: UIViewController {
     let bundle = Bundle(for: ContactTableCell.self)
     
     let image = UIImage(
-      named: contact.image ?? "",
+      named: contact.image ?? "avatar",
       in: bundle,
       compatibleWith: nil
     )

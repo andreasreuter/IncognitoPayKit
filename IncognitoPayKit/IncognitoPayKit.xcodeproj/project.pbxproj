@@ -14,6 +14,9 @@
 		E12D397E25900378006D25EF /* ContactTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D397D25900378006D25EF /* ContactTableCell.swift */; };
 		E12D39842590C256006D25EF /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D39832590C256006D25EF /* ContactView.swift */; };
 		E1483C8D259740170088E145 /* UIAlertController+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1483C8C259740170088E145 /* UIAlertController+Activity.swift */; };
+		E1483C9525975B430088E145 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1483C9425975B430088E145 /* ActivityIndicatorView.swift */; };
+		E1483C9F2597D5D10088E145 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1483C9E2597D5D10088E145 /* UIAlertController+Error.swift */; };
+		E1483CA42597D9B90088E145 /* WalletError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1483CA32597D9B90088E145 /* WalletError.swift */; };
 		E14B7D5F25960EDF005CE0F5 /* NewWalletOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */; };
 		E14DF655259220D900BADF50 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF654259220D900BADF50 /* Contact.swift */; };
 		E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */; };
@@ -56,6 +59,9 @@
 		E12D397D25900378006D25EF /* ContactTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableCell.swift; sourceTree = "<group>"; };
 		E12D39832590C256006D25EF /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		E1483C8C259740170088E145 /* UIAlertController+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Activity.swift"; sourceTree = "<group>"; };
+		E1483C9425975B430088E145 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		E1483C9E2597D5D10088E145 /* UIAlertController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Error.swift"; sourceTree = "<group>"; };
+		E1483CA32597D9B90088E145 /* WalletError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletError.swift; sourceTree = "<group>"; };
 		E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletOptions.swift; sourceTree = "<group>"; };
 		E14DF654259220D900BADF50 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
@@ -124,6 +130,14 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
+		E1483CA22597D99D0088E145 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				E1483CA32597D9B90088E145 /* WalletError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		E14B7D5D25960E54005CE0F5 /* Incognito Pay Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +159,7 @@
 		E1693743258EC3FD0098C525 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				E15E548B25961CD000B1D5D8 /* NewWallet.swift */,
 				E1693744258EC4310098C525 /* WalletAPI.swift */,
 			);
 			path = Networking;
@@ -191,6 +206,7 @@
 		E1A704D7256BB0F900DC9AAA /* IncognitoPayKit */ = {
 			isa = PBXGroup;
 			children = (
+				E1483CA22597D99D0088E145 /* Errors */,
 				E1693758258ED66B0098C525 /* Models */,
 				E1693743258EC3FD0098C525 /* Networking */,
 				E10A30A02572F28A00B03822 /* Credential Storage */,
@@ -199,7 +215,8 @@
 				E1A704D9256BB0F900DC9AAA /* Info.plist */,
 				E1A704F1256BB60200DC9AAA /* Images.xcassets */,
 				E169374A258EC77C0098C525 /* Config.swift */,
-				E15E548B25961CD000B1D5D8 /* NewWallet.swift */,
+				E1483C8C259740170088E145 /* UIAlertController+Activity.swift */,
+				E1483C9E2597D5D10088E145 /* UIAlertController+Error.swift */,
 				E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */,
 			);
 			path = IncognitoPayKit;
@@ -223,9 +240,9 @@
 				E17E2F5225725ED6003CBA24 /* Camera */,
 				E1A70581256C007E00DC9AAA /* Wallet */,
 				E1A70580256C007200DC9AAA /* Buttons */,
+				E1483C9425975B430088E145 /* ActivityIndicatorView.swift */,
 				E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */,
 				E15947E925939E850091C335 /* InsetLabel.swift */,
-				E1483C8C259740170088E145 /* UIAlertController+Activity.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E169375A258ED6960098C525 /* Wallet.swift in Sources */,
+				E1483CA42597D9B90088E145 /* WalletError.swift in Sources */,
 				E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */,
 				E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */,
 				E14DF655259220D900BADF50 /* Contact.swift in Sources */,
@@ -368,10 +386,12 @@
 				E10A30A72572F41200B03822 /* WalletData.swift in Sources */,
 				E10A30A82572F41200B03822 /* WalletDataKeychain.swift in Sources */,
 				E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */,
+				E1483C9F2597D5D10088E145 /* UIAlertController+Error.swift in Sources */,
 				E169374B258EC77C0098C525 /* Config.swift in Sources */,
 				E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */,
 				E1483C8D259740170088E145 /* UIAlertController+Activity.swift in Sources */,
 				E15947D42592B16A0091C335 /* PaymentView.swift in Sources */,
+				E1483C9525975B430088E145 /* ActivityIndicatorView.swift in Sources */,
 				E14B7D5F25960EDF005CE0F5 /* NewWalletOptions.swift in Sources */,
 				E10A30A22572F2D500B03822 /* Keychain.swift in Sources */,
 				E15947EA25939E850091C335 /* InsetLabel.swift in Sources */,

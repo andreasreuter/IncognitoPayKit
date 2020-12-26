@@ -69,8 +69,72 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
       let newWalletOptions = NewWalletOptions(
         newWallet: {
           print("Incognito Pay create new wallet.")
-          try? NewWallet.newWallet { wallet in
-            self.storeWallet(wallet: wallet)
+          
+          let loadingAlert = UIAlertController.loadingAlert(
+            text: "New wallet..."
+          )
+          self.base.present(loadingAlert, animated: true)
+          
+          do {
+            try NewWallet.newWallet { wallet in
+              do {
+                guard let _ = wallet else {
+                  throw WalletError.nilWallet
+                }
+                
+                try self.storeWallet(wallet: wallet!)
+
+                DispatchQueue.main.async {
+                  loadingAlert.dismiss(animated: true) {
+                    let activityAlert = UIAlertController.activityAlert(
+                      symbolName: "rectangle.stack.fill.badge.plus",
+                      text: "Wallet created!"
+                    )
+                    self.base.present(activityAlert, animated: true)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
+                      activityAlert.dismiss(animated: true)
+                    }
+                  }
+                }
+              } catch is WalletError {
+                print("Error create wallet via backend.")
+                
+                DispatchQueue.main.async {
+                  loadingAlert.dismiss(animated: true) {
+                    let errorAlert = UIAlertController.errorAlert(
+                      title: "Failure",
+                      message: "Cannot create wallet. Try again!"
+                    )
+                    self.base.present(errorAlert, animated: true)
+                  }
+                }
+              } catch {
+                print("Error store wallet in Keychain: \(error).")
+                
+                DispatchQueue.main.async {
+                  loadingAlert.dismiss(animated: true) {
+                    let errorAlert = UIAlertController.errorAlert(
+                      title: "Failure",
+                      message: "Cannot store wallet in Keychain. Try again!"
+                    )
+                    self.base.present(errorAlert, animated: true)
+                  }
+                }
+              }
+            }
+          } catch {
+            print("Error create wallet via backend: \(error).")
+            
+            DispatchQueue.main.async {
+              loadingAlert.dismiss(animated: true) {
+                let errorAlert = UIAlertController.errorAlert(
+                  title: "Failure",
+                  message: "Cannot create wallet. Try again!"
+                )
+                self.base.present(errorAlert, animated: true)
+              }
+            }
           }
         },
         importWallet: {
@@ -169,7 +233,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
     ])
   }
   
-  private func storeWallet(wallet: Wallet) {
+  private func storeWallet(wallet: Wallet) throws {
     let walletData = WalletData(
       privateKey: wallet.privateKey,
       publicKey: wallet.publicKey,
@@ -178,12 +242,8 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
       identifier: "Incognito Pay Wallet"
     )
 
-    do {
-      // store wallet data in keychain.
-      let keychain = WalletDataKeychain()
-      try keychain.store(walletData)
-    } catch {
-      print("Error store wallet in Keychain: \(error).")
-    }
+    // store wallet data in keychain.
+    let keychain = WalletDataKeychain()
+    try keychain.store(walletData)
   }
 }
