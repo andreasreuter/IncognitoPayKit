@@ -161,6 +161,7 @@ class PaymentConfirmView: UIViewController {
       ),
       titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
       
+      amountLabel.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
       amountLabel.topAnchor.constraint(
         equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor,
         constant: 30
@@ -183,7 +184,7 @@ class PaymentConfirmView: UIViewController {
       ),
       walletAddress.topAnchor.constraint(
         equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor,
-        constant: 100
+        constant: 55
       ),
       walletAddress.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
       
@@ -191,7 +192,7 @@ class PaymentConfirmView: UIViewController {
       confirmButton.widthAnchor.constraint(equalToConstant: 150),
       confirmButton.topAnchor.constraint(
         greaterThanOrEqualTo: walletAddress.safeAreaLayoutGuide.bottomAnchor,
-        constant: 200
+        constant: 50
       ),
       confirmButton.bottomAnchor.constraint(
         equalTo: view.safeAreaLayoutGuide.bottomAnchor,
