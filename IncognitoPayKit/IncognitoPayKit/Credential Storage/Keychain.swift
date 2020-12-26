@@ -26,6 +26,13 @@ protocol Keychain {
 }
 
 extension Keychain {
+  func remove() throws {
+    let status = SecItemDelete(keychainQuery() as CFDictionary)
+    guard status == noErr || status == errSecItemNotFound else {
+      throw KeychainError.secCallFailed(status)
+    }
+  }
+  
   func retrieve() throws -> DataType {
     var query = keychainQuery()
     query[kSecMatchLimit as String] = kSecMatchLimitOne
