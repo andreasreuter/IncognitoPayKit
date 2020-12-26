@@ -13,6 +13,7 @@
 		E12D397825900336006D25EF /* ContactTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D397725900336006D25EF /* ContactTableView.swift */; };
 		E12D397E25900378006D25EF /* ContactTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D397D25900378006D25EF /* ContactTableCell.swift */; };
 		E12D39842590C256006D25EF /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D39832590C256006D25EF /* ContactView.swift */; };
+		E1483C8D259740170088E145 /* UIAlertController+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1483C8C259740170088E145 /* UIAlertController+Activity.swift */; };
 		E14B7D5F25960EDF005CE0F5 /* NewWalletOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */; };
 		E14DF655259220D900BADF50 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF654259220D900BADF50 /* Contact.swift */; };
 		E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */; };
@@ -54,6 +55,7 @@
 		E12D397725900336006D25EF /* ContactTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableView.swift; sourceTree = "<group>"; };
 		E12D397D25900378006D25EF /* ContactTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableCell.swift; sourceTree = "<group>"; };
 		E12D39832590C256006D25EF /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		E1483C8C259740170088E145 /* UIAlertController+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Activity.swift"; sourceTree = "<group>"; };
 		E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletOptions.swift; sourceTree = "<group>"; };
 		E14DF654259220D900BADF50 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				E1A70580256C007200DC9AAA /* Buttons */,
 				E14DF6582592513F00BADF50 /* ContentSizedTableView.swift */,
 				E15947E925939E850091C335 /* InsetLabel.swift */,
+				E1483C8C259740170088E145 /* UIAlertController+Activity.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */,
 				E169374B258EC77C0098C525 /* Config.swift in Sources */,
 				E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */,
+				E1483C8D259740170088E145 /* UIAlertController+Activity.swift in Sources */,
 				E15947D42592B16A0091C335 /* PaymentView.swift in Sources */,
 				E14B7D5F25960EDF005CE0F5 /* NewWalletOptions.swift in Sources */,
 				E10A30A22572F2D500B03822 /* Keychain.swift in Sources */,
