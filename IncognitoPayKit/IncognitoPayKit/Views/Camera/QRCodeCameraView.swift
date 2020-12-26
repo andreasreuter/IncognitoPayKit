@@ -120,6 +120,11 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
      * draw QR code corner frame, align to center of screen.
      */
     self.cornerFrame()
+    
+    /*
+     * close button, bring to top of camera again.
+     */
+    view.bringSubviewToFront(closeButton)
   }
   
   override func viewWillAppear(_ animated: Bool) {
