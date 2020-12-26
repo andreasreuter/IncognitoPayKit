@@ -106,11 +106,11 @@ class PaymentConfirmView: UIViewController {
     view.addSubview(label)
     
     NSLayoutConstraint.activate([
-      title.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      title.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
-      label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      label.topAnchor.constraint(equalTo: title.safeAreaLayoutGuide.bottomAnchor, constant: 5)
+      label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      label.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5)
     ])
     
     return (view)
@@ -124,8 +124,8 @@ class PaymentConfirmView: UIViewController {
     return (button)
   }()
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
     view.blurView()
     
@@ -150,55 +150,55 @@ class PaymentConfirmView: UIViewController {
       image.heightAnchor.constraint(equalToConstant: 80),
       image.widthAnchor.constraint(equalToConstant: 80),
       image.topAnchor.constraint(
-        equalTo: closeButton.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: closeButton.bottomAnchor,
         constant: 20
       ),
-      image.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       titleLabel.topAnchor.constraint(
-        equalTo: image.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: image.bottomAnchor,
         constant: 8
       ),
-      titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       amountLabel.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
       amountLabel.topAnchor.constraint(
-        equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: titleLabel.bottomAnchor,
         constant: 30
       ),
-      amountLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      amountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       currencyButton.topAnchor.constraint(
-        equalTo: amountLabel.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: amountLabel.bottomAnchor,
         constant: 10
       ),
-      currencyButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      currencyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       walletAddress.leadingAnchor.constraint(
-        equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+        equalTo: view.leadingAnchor,
         constant: 30
       ),
       walletAddress.trailingAnchor.constraint(
-        equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+        equalTo: view.trailingAnchor,
         constant: -30
       ),
       walletAddress.topAnchor.constraint(
-        equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor,
-        constant: 55
+        equalTo: currencyButton.bottomAnchor,
+        constant: 50
       ),
-      walletAddress.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      walletAddress.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       confirmButton.heightAnchor.constraint(equalToConstant: 70),
       confirmButton.widthAnchor.constraint(equalToConstant: 150),
       confirmButton.topAnchor.constraint(
-        greaterThanOrEqualTo: walletAddress.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: walletAddress.bottomAnchor,
         constant: 50
       ),
       confirmButton.bottomAnchor.constraint(
-        equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: view.bottomAnchor,
         constant: -30
       ),
-      confirmButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+      confirmButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
   }
   
@@ -210,13 +210,78 @@ class PaymentConfirmView: UIViewController {
   @objc final public func confirmButtonTapped() {
     print("Payment confirm button tapped.")
     
+    let loadingAlert = UIAlertController.loadingAlert(
+      text: "Send coins to..."
+    )
+    self.present(loadingAlert, animated: true)
+    
     do {
       let keychain = WalletDataKeychain()
       let walletData = try keychain.retrieve()
       
-      print(walletData.privateKey)
+      do {
+        try Payment.walletSend(privateKey: walletData.privateKey, walletAddress: contact.walletAddress, privacyCoins: amount) { transactionHash in
+          do {
+            guard let _ = transactionHash else {
+              throw PaymentError.interrupted
+            }
+            
+            DispatchQueue.main.async {
+              loadingAlert.dismiss(animated: true) {
+                let activityAlert = UIAlertController.activityAlert(
+                  symbolName: "checkmark.circle.fill",
+                  text: "Wallet created!"
+                )
+                self.present(activityAlert, animated: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
+                  activityAlert.dismiss(animated: true)
+                }
+              }
+            }
+          } catch {
+            print("Error send coins via backend: \(error).")
+            
+            DispatchQueue.main.async {
+              loadingAlert.dismiss(animated: true) {
+                let errorAlert = UIAlertController.errorAlert(
+                  title: "Temporary error",
+                  message: "Cannot send coins from your wallet. Try again!"
+                )
+                self.present(errorAlert, animated: true)
+              }
+            }
+          }
+        }
+      } catch {
+        print("Error send coins via backend: \(error).")
+        
+        DispatchQueue.main.async {
+          loadingAlert.dismiss(animated: true) {
+            let errorAlert = UIAlertController.errorAlert(
+              title: "Temporary error",
+              message: "Cannot send coins from your wallet: \(error). Try again!"
+            )
+            self.present(errorAlert, animated: true)
+          }
+        }
+      }
     } catch {
       print("Error load wallet from Keychain: \(error).")
+      
+      DispatchQueue.main.async {
+        loadingAlert.dismiss(animated: true) {
+          let errorAlert = UIAlertController.errorAlert(
+            title: "Wallet error",
+            message: """
+              Cannot load wallet from Keychain.
+              You must import a wallet or create a new wallet.
+              Before you try again!
+            """
+          )
+          self.present(errorAlert, animated: true)
+        }
+      }
     }
   }
 }

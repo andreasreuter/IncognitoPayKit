@@ -73,8 +73,8 @@ class PaymentView: UIViewController, UITextFieldDelegate {
     return (button)
   }()
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
     view.blurView()
     
@@ -95,41 +95,53 @@ class PaymentView: UIViewController, UITextFieldDelegate {
       ),
       
       contactInfo.topAnchor.constraint(
-        equalTo: closeButton.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: closeButton.bottomAnchor,
         constant: 20
       ),
-      contactInfo.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      contactInfo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       amountText.widthAnchor.constraint(equalToConstant: view.bounds.width / 2),
       amountText.topAnchor.constraint(
-        equalTo: contactInfo.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: contactInfo.bottomAnchor,
         constant: 25
       ),
-      amountText.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      amountText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       currencyButton.topAnchor.constraint(
-        equalTo: amountText.safeAreaLayoutGuide.bottomAnchor,
+        equalTo: amountText.bottomAnchor,
         constant: 10
       ),
-      currencyButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      currencyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       
       previewButton.heightAnchor.constraint(equalToConstant: 70),
       previewButton.widthAnchor.constraint(equalToConstant: 150),
       previewButton.topAnchor.constraint(
-        equalTo: currencyButton.safeAreaLayoutGuide.bottomAnchor,
-        constant: 130
+        equalTo: currencyButton.bottomAnchor,
+        constant: 100
       ),
-      previewButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+      previewButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
   }
   
   @objc final public func closeButtonTapped() {
     print("Payment close button tapped.")
+    
+    /*
+     * dismiss keyboard, before present other views.
+     */
+    view.endEditing(true)
+    
     self.dismiss(animated: true)
   }
   
   @objc final public func previewButtonTapped() {
     print("Payment preview button tapped.")
+    
+    /*
+     * dismiss keyboard, before present other views.
+     */
+    view.endEditing(true)
+    
     let paymentConfirm = PaymentConfirmView(base: self, contact: contact, amount: amountText.text!)
     paymentConfirm.modalPresentationStyle = .overCurrentContext
     paymentConfirm.modalTransitionStyle = .crossDissolve

@@ -110,14 +110,16 @@ class WalletAPI {
     .resume()
   }
   
-  func walletSend(walletSendPayload: WalletSendPayload, completion: @escaping (String) -> Void) throws {
+  func walletSend(walletSendPayload: WalletSendPayload, completion: @escaping (String?) -> Void) throws {
     guard let url = URL(string: try Config.value(for: "REST_API_BASE_URL") + "/WalletSend") else {
       print("Error: cannot get api base url")
+      completion(nil)
       return
     }
     
     guard let jsonData = try? JSONEncoder().encode(walletSendPayload) else {
       print("Error: cannot cast parameters to json")
+      completion(nil)
       return
     }
     
@@ -129,19 +131,25 @@ class WalletAPI {
     URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let error = error {
         print("Error returning transaction hash: \(error)")
+        completion(nil)
         return
       }
       
       guard let httpResponse = response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode) else {
         print("Error unexpecting status code: \(response!)")
+        completion(nil)
         return
       }
       
       if let data = data,
          let transactionHash = try? JSONDecoder().decode(String.self, from: data) {
         completion(transactionHash)
+        return
       }
+      
+      print("Error invalid transaction hash: \(String(decoding: data!, as: UTF8.self))")
+      completion(nil)
     }
     .resume()
   }

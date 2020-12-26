@@ -103,7 +103,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
                     let errorAlert = UIAlertController.errorAlert(
-                      title: "Failure",
+                      title: "Temporary error",
                       message: "Cannot create wallet. Try again!"
                     )
                     self.base.present(errorAlert, animated: true)
@@ -115,7 +115,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
                     let errorAlert = UIAlertController.errorAlert(
-                      title: "Failure",
+                      title: "Temporary error",
                       message: "Cannot store wallet in Keychain. Try again!"
                     )
                     self.base.present(errorAlert, animated: true)
@@ -129,7 +129,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
             DispatchQueue.main.async {
               loadingAlert.dismiss(animated: true) {
                 let errorAlert = UIAlertController.errorAlert(
-                  title: "Failure",
+                  title: "Temporary error",
                   message: "Cannot create wallet. Try again!"
                 )
                 self.base.present(errorAlert, animated: true)
@@ -203,6 +203,8 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
   }
   
   public override func willMove(toWindow newWindow: UIWindow?) {
+    super.willMove(toWindow: newWindow)
+    
     /*
      * always set same button size for all button behaviours.
      */

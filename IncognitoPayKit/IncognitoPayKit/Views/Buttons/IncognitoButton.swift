@@ -29,6 +29,8 @@ class IncognitoButton: UIButton {
   }
   
   override func willMove(toWindow newWindow: UIWindow?) {
+    super.willMove(toWindow: newWindow)
+    
     /*
      * design its normal button behaviour.
      */
