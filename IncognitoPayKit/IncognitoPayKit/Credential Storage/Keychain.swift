@@ -21,12 +21,13 @@ protocol Keychain {
   var account: String { get set }
   var service: String { get set }
 
+  func delete() throws
   func retrieve() throws -> DataType
   func store(_ data: DataType) throws
 }
 
 extension Keychain {
-  func remove() throws {
+  func delete() throws {
     let status = SecItemDelete(keychainQuery() as CFDictionary)
     guard status == noErr || status == errSecItemNotFound else {
       throw KeychainError.secCallFailed(status)
