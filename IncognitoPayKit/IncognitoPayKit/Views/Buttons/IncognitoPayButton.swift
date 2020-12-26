@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class IncognitoPayButton: UIButton {
+public class IncognitoPayButton: UIButton, CAAnimationDelegate {
   private(set) var base: UIViewController
   
   private let cgSize: CGSize = CGSize(width: 100, height: 50)
@@ -95,7 +95,55 @@ public class IncognitoPayButton: UIButton {
     return (imageView)
   }
   
+  fileprivate lazy var indicationColor: CAGradientLayer = {
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.frame =  CGRect(origin: CGPoint.zero, size: frame.size)
+    gradientLayer.colors = [
+      UIColor(red: 135/255, green: 238/255, blue: 253/255, alpha: 1).cgColor,
+      UIColor(red: 92/255, green: 163/255, blue: 246/255, alpha: 1).cgColor,
+      UIColor(red: 67/255, green: 118/255, blue: 208/255, alpha: 1).cgColor,
+      UIColor(red: 47/255, green: 84/255, blue: 136/255, alpha: 1).cgColor
+    ]
+    gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+    gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+
+    let shape = CAShapeLayer()
+    shape.lineWidth = 10
+    shape.path = UIBezierPath(roundedRect: bounds, cornerRadius: 25).cgPath
+    shape.strokeColor = UIColor.black.cgColor
+    shape.fillColor = UIColor.clear.cgColor
+    gradientLayer.mask = shape
+    
+    return (gradientLayer)
+  }()
+  
+  private func animateIndicationColor(gradientLayer: CAGradientLayer) -> CAGradientLayer {
+    let colorsAnimation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.colors))
+    colorsAnimation.fromValue = gradientLayer.colors
+    colorsAnimation.toValue = [
+      UIColor(red: 47/255, green: 84/255, blue: 136/255, alpha: 1).cgColor,
+      UIColor(red: 67/255, green: 118/255, blue: 208/255, alpha: 1).cgColor,
+      UIColor(red: 92/255, green: 163/255, blue: 246/255, alpha: 1).cgColor,
+      UIColor(red: 135/255, green: 238/255, blue: 253/255, alpha: 1).cgColor
+    ]
+    colorsAnimation.duration = 1.8
+    colorsAnimation.delegate = self
+    colorsAnimation.fillMode = .forwards
+    colorsAnimation.repeatCount = .infinity
+    colorsAnimation.autoreverses = true
+    colorsAnimation.isRemovedOnCompletion = false
+  
+    gradientLayer.add(colorsAnimation, forKey: "colors")
+    
+    return (gradientLayer)
+  }
+  
   public override func willMove(toWindow newWindow: UIWindow?) {
+    /*
+     * always set same button size for all button behaviours.
+     */
+    frame.size = cgSize
+    
     /*
      * design its normal button behaviour.
      */
@@ -107,14 +155,10 @@ public class IncognitoPayButton: UIButton {
     setTitle("Pay", for: .normal)
     setTitleColor(UIColor.black, for: .normal)
     titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+    layer.addSublayer(animateIndicationColor(gradientLayer: indicationColor))
     layer.cornerRadius = 25
     layer.masksToBounds = true
     clipsToBounds = true
-    
-    /*
-     * always set same button size for all button behaviours.
-     */
-    frame.size = cgSize
     
     imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: spacing)
     titleEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: 0)
