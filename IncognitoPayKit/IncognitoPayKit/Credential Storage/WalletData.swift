@@ -43,4 +43,18 @@ extension WalletData: Codable {
     try container.encode(walletAddress, forKey: .walletAddress)
     try container.encode(identifier, forKey: .identifier)
   }
+  
+  static func storeWallet(wallet: Wallet) throws {
+    let walletData = WalletData(
+      privateKey: wallet.privateKey,
+      publicKey: wallet.publicKey,
+      readonlyKey: wallet.readonlyKey,
+      walletAddress: wallet.walletAddress,
+      identifier: "Incognito Pay Wallet"
+    )
+
+    // store wallet data in keychain.
+    let keychain = WalletDataKeychain()
+    try keychain.store(walletData)
+  }
 }

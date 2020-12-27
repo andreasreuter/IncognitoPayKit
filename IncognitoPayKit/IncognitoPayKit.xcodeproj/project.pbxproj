@@ -27,6 +27,7 @@
 		E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E548B25961CD000B1D5D8 /* NewWallet.swift */; };
 		E15E54A625967C8700B1D5D8 /* UIView+BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */; };
 		E15F87D12597E670009C95BD /* PaymentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15F87D02597E670009C95BD /* PaymentError.swift */; };
+		E15F87D5259805F6009C95BD /* ImportWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15F87D4259805F6009C95BD /* ImportWalletView.swift */; };
 		E1693745258EC4310098C525 /* WalletAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693744258EC4310098C525 /* WalletAPI.swift */; };
 		E169374B258EC77C0098C525 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E169374A258EC77C0098C525 /* Config.swift */; };
 		E169375A258ED6960098C525 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693759258ED6960098C525 /* Wallet.swift */; };
@@ -74,6 +75,7 @@
 		E15E548B25961CD000B1D5D8 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
 		E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BlurView.swift"; sourceTree = "<group>"; };
 		E15F87D02597E670009C95BD /* PaymentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentError.swift; sourceTree = "<group>"; };
+		E15F87D4259805F6009C95BD /* ImportWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletView.swift; sourceTree = "<group>"; };
 		E1693744258EC4310098C525 /* WalletAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAPI.swift; sourceTree = "<group>"; };
 		E169374A258EC77C0098C525 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		E169374E258EC9430098C525 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				E1A70582256C00B900DC9AAA /* WalletQRCode.swift */,
 				E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */,
+				E15F87D4259805F6009C95BD /* ImportWalletView.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				E1693745258EC4310098C525 /* WalletAPI.swift in Sources */,
 				E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */,
 				E15E54A625967C8700B1D5D8 /* UIView+BlurView.swift in Sources */,
+				E15F87D5259805F6009C95BD /* ImportWalletView.swift in Sources */,
 				E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */,
 				E15947E02592C08D0091C335 /* PaymentConfirmView.swift in Sources */,
 				E12D397825900336006D25EF /* ContactTableView.swift in Sources */,

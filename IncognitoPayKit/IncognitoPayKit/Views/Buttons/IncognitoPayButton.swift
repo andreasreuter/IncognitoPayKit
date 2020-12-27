@@ -53,7 +53,10 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
         },
         receive: {
           print("Incognito Pay receive coin.")
-          self.base.present(WalletQRCodeView(base: self.base, codeValue: "xyz"), animated: true)
+          self.base.present(
+            WalletQRCodeView(base: self.base, codeValue: "xyz"),
+            animated: true
+          )
         }
       )
       
@@ -82,7 +85,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                   throw WalletError.nilWallet
                 }
                 
-                try self.storeWallet(wallet: wallet!)
+                try WalletData.storeWallet(wallet: wallet!)
 
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
@@ -139,6 +142,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
         },
         importWallet: {
           print("Incognito Pay import wallet.")
+          self.base.present(ImportWalletView(), animated: true)
         }
       )
       
@@ -233,19 +237,5 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
       logoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       logoView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
     ])
-  }
-  
-  private func storeWallet(wallet: Wallet) throws {
-    let walletData = WalletData(
-      privateKey: wallet.privateKey,
-      publicKey: wallet.publicKey,
-      readonlyKey: wallet.readonlyKey,
-      walletAddress: wallet.walletAddress,
-      identifier: "Incognito Pay Wallet"
-    )
-
-    // store wallet data in keychain.
-    let keychain = WalletDataKeychain()
-    try keychain.store(walletData)
   }
 }

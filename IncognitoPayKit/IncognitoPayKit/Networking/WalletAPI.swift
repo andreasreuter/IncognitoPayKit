@@ -106,6 +106,9 @@ class WalletAPI {
          let wallet = try? JSONDecoder().decode(Wallet.self, from: data) {
         completion(wallet)
       }
+      
+      print("Error failed wallet import: \(String(decoding: data!, as: UTF8.self))")
+      completion(nil)
     }
     .resume()
   }
