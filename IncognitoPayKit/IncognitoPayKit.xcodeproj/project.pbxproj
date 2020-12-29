@@ -31,10 +31,8 @@
 		E1693745258EC4310098C525 /* WalletAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693744258EC4310098C525 /* WalletAPI.swift */; };
 		E169374B258EC77C0098C525 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E169374A258EC77C0098C525 /* Config.swift */; };
 		E169375A258ED6960098C525 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693759258ED6960098C525 /* Wallet.swift */; };
-		E176D117259B383E00ABDEFE /* IncognitoPayKitTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = E1A704DE256BB0F900DC9AAA /* IncognitoPayKitTests.xctest */; };
 		E17E2F432572511C003CBA24 /* QRCodeCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E2F422572511C003CBA24 /* QRCodeCameraView.swift */; };
 		E17E2F5425725EF1003CBA24 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E2F5325725EF1003CBA24 /* CornerView.swift */; };
-		E1A704DF256BB0F900DC9AAA /* IncognitoPayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */; };
 		E1A704E4256BB0F900DC9AAA /* IncognitoPayKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704E3256BB0F900DC9AAA /* IncognitoPayKitTests.swift */; };
 		E1A704E6256BB0F900DC9AAA /* IncognitoPayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A704F1256BB60200DC9AAA /* Images.xcassets */; };
@@ -110,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A704DF256BB0F900DC9AAA /* IncognitoPayKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +365,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */,
-				E176D117259B383E00ABDEFE /* IncognitoPayKitTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +570,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = NO;
 				INFOPLIST_FILE = IncognitoPayKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;

@@ -90,7 +90,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "IncognitoPayKit/**/*.{h,swift}"
+  spec.source_files  = "IncognitoPayKit/*.{h,swift}", "IncognitoPayKit/**/*.{h,swift}"
 
   # spec.exclude_files = "Classes/Exclude"
 

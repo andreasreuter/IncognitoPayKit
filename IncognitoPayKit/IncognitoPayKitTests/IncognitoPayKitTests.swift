@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import IncognitoPayKit
 
 class IncognitoPayKitTests: XCTestCase {
   override func setUpWithError() throws {
