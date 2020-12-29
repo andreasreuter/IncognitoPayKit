@@ -32,10 +32,8 @@
 		E169374B258EC77C0098C525 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E169374A258EC77C0098C525 /* Config.swift */; };
 		E169375A258ED6960098C525 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1693759258ED6960098C525 /* Wallet.swift */; };
 		E176D120259B3CF800ABDEFE /* IncognitoPayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */; };
-		E176D121259B3D1200ABDEFE /* IncognitoPayKitTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = E1A704DE256BB0F900DC9AAA /* IncognitoPayKitTests.xctest */; };
 		E17E2F432572511C003CBA24 /* QRCodeCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E2F422572511C003CBA24 /* QRCodeCameraView.swift */; };
 		E17E2F5425725EF1003CBA24 /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E2F5325725EF1003CBA24 /* CornerView.swift */; };
-		E1A704E4256BB0F900DC9AAA /* IncognitoPayKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704E3256BB0F900DC9AAA /* IncognitoPayKitTests.swift */; };
 		E1A704E6256BB0F900DC9AAA /* IncognitoPayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A704F1256BB60200DC9AAA /* Images.xcassets */; };
 		E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */; };
@@ -44,16 +42,6 @@
 		E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */; };
 		E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8A3C1256D0B07009BDCB5 /* IncognitoButton.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E1A704E0256BB0F900DC9AAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1A704CC256BB0F800DC9AAA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1A704D4256BB0F800DC9AAA;
-			remoteInfo = IncognitoPayKit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E10A30A12572F2D500B03822 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -87,7 +75,6 @@
 		E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IncognitoPayKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncognitoPayKit.h; sourceTree = "<group>"; };
 		E1A704D9256BB0F900DC9AAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1A704DE256BB0F900DC9AAA /* IncognitoPayKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IncognitoPayKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A704E3256BB0F900DC9AAA /* IncognitoPayKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayKitTests.swift; sourceTree = "<group>"; };
 		E1A704E5256BB0F900DC9AAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1A704F1256BB60200DC9AAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -104,13 +91,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E176D120259B3CF800ABDEFE /* IncognitoPayKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1A704DB256BB0F900DC9AAA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */,
-				E1A704DE256BB0F900DC9AAA /* IncognitoPayKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -307,24 +286,6 @@
 			productReference = E1A704D5256BB0F900DC9AAA /* IncognitoPayKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E1A704DD256BB0F900DC9AAA /* IncognitoPayKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E1A704EC256BB0F900DC9AAA /* Build configuration list for PBXNativeTarget "IncognitoPayKitTests" */;
-			buildPhases = (
-				E1A704DA256BB0F900DC9AAA /* Sources */,
-				E1A704DB256BB0F900DC9AAA /* Frameworks */,
-				E1A704DC256BB0F900DC9AAA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E1A704E1256BB0F900DC9AAA /* PBXTargetDependency */,
-			);
-			name = IncognitoPayKitTests;
-			productName = IncognitoPayKitTests;
-			productReference = E1A704DE256BB0F900DC9AAA /* IncognitoPayKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -337,9 +298,6 @@
 					E1A704D4256BB0F800DC9AAA = {
 						CreatedOnToolsVersion = 12.2;
 						LastSwiftMigration = 1220;
-					};
-					E1A704DD256BB0F900DC9AAA = {
-						CreatedOnToolsVersion = 12.2;
 					};
 				};
 			};
@@ -357,7 +315,6 @@
 			projectRoot = "";
 			targets = (
 				E1A704D4256BB0F800DC9AAA /* IncognitoPayKit */,
-				E1A704DD256BB0F900DC9AAA /* IncognitoPayKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -368,14 +325,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1A704DC256BB0F900DC9AAA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E176D121259B3D1200ABDEFE /* IncognitoPayKitTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,23 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1A704DA256BB0F900DC9AAA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1A704E4256BB0F900DC9AAA /* IncognitoPayKitTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E1A704E1256BB0F900DC9AAA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1A704D4256BB0F800DC9AAA /* IncognitoPayKit */;
-			targetProxy = E1A704E0256BB0F900DC9AAA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E1A704E7256BB0F900DC9AAA /* Debug */ = {
@@ -622,44 +555,6 @@
 			};
 			name = Release;
 		};
-		E1A704ED256BB0F900DC9AAA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2NQBGG84BZ;
-				INFOPLIST_FILE = IncognitoPayKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodancemonkey.IncognitoPayKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E1A704EE256BB0F900DC9AAA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2NQBGG84BZ;
-				INFOPLIST_FILE = IncognitoPayKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nodancemonkey.IncognitoPayKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -677,15 +572,6 @@
 			buildConfigurations = (
 				E1A704EA256BB0F900DC9AAA /* Debug */,
 				E1A704EB256BB0F900DC9AAA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E1A704EC256BB0F900DC9AAA /* Build configuration list for PBXNativeTarget "IncognitoPayKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E1A704ED256BB0F900DC9AAA /* Debug */,
-				E1A704EE256BB0F900DC9AAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
