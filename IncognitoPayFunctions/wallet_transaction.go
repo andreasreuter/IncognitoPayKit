@@ -14,7 +14,7 @@ import (
 //
 func WalletTransaction(response http.ResponseWriter, request *http.Request) {
 	var wallet struct {
-		WalletAddress string `json:"walletAddress`
+		WalletAddress string `json:"walletAddress"`
 		ReadonlyKey   string `json:"readonlyKey"`
 	}
 
