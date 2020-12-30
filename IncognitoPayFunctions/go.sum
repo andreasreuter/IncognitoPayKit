@@ -16,6 +16,8 @@ github.com/incognito-core-libs/go-ethereum v0.0.0-20200727111130-b221153e6987 h1
 github.com/incognito-core-libs/go-ethereum v0.0.0-20200727111130-b221153e6987/go.mod h1:ZZjnS1BsysKrqzXtwp1i1vKWBETpSjjx+Ed7Qd0pjao=
 github.com/incognitochain/go-incognito-sdk v0.0.0-20201201043536-ed6a0686adae h1:HdqGz1ek1O8vJ8/KC6VULmvQhC9Gn2uJqt/tDnALfmI=
 github.com/incognitochain/go-incognito-sdk v0.0.0-20201201043536-ed6a0686adae/go.mod h1:W2CaxTaxgkOcGnKBd2Ccd6Vsr1TJlhalooMyP1hG7k0=
+github.com/incognitochain/go-incognito-sdk v1.0.0 h1:ECm8px/2kjudp28CpUi1+1gVxoiGTcCl3D0h/tg1hmk=
+github.com/incognitochain/go-incognito-sdk v1.0.0/go.mod h1:W2CaxTaxgkOcGnKBd2Ccd6Vsr1TJlhalooMyP1hG7k0=
 github.com/klauspost/compress v1.10.10 h1:a/y8CglcM7gLGYmlbP/stPE5sR3hbhFRUjCBfd/0B3I=
 github.com/klauspost/compress v1.10.10/go.mod h1:aoV0uJVorq1K+umq18yTdKaF57EivdYsUV+/s2qKfXs=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=

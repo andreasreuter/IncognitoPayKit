@@ -21,9 +21,10 @@ func NewWallet(response http.ResponseWriter, request *http.Request) {
 		WalletAddress string `json:"walletAddress"`
 	}
 
-	incognitoBlockchain := incognito.IncognitoBlockchain()
+	publicIncognito := incognito.PublicIncognito()
+	newWallet := incognito.NewWallet(publicIncognito)
 
-	address, pubKey, readonlyKey, privateKey, error := incognitoBlockchain.CreateWalletAddress()
+	walletAddress, publicKey, readonlyKey, privateKey, _, _, error := newWallet.CreateWallet()
 
 	if error != nil {
 		fmt.Fprint(response, error)
@@ -31,9 +32,9 @@ func NewWallet(response http.ResponseWriter, request *http.Request) {
 	}
 
 	wallet.PrivateKey = privateKey
-	wallet.PublicKey = pubKey
+	wallet.PublicKey = publicKey
 	wallet.ReadonlyKey = readonlyKey
-	wallet.WalletAddress = address
+	wallet.WalletAddress = walletAddress
 
 	encoder := json.NewEncoder(response)
 	encoder.Encode(&wallet)

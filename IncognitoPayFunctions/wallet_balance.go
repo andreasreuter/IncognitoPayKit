@@ -22,9 +22,10 @@ func WalletBalance(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	incognitoBlockchain := incognito.IncognitoBlockchain()
+	publicIncognito := incognito.PublicIncognito()
+	newWallet := incognito.NewWallet(publicIncognito)
 
-	privacyCoins, error := incognitoBlockchain.GetBalance(
+	privacyCoins, error := newWallet.GetBalance(
 		wallet.WalletAddress, "0000000000000000000000000000000000000000000000000000000000000004", // Privacy coin
 	)
 

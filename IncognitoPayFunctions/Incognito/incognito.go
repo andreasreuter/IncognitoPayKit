@@ -7,19 +7,25 @@ import (
 )
 
 //
-// IncognitoBlockchain creates an instance of Incognito client
-// to connect with Incognito Blockchain.
+// PublicIncognito creates an instance of Incognito client
+// to connect with blockchain.
 //
-func IncognitoBlockchain() *incognitoclient.Blockchain {
+func PublicIncognito() *incognitoclient.PublicIncognito {
 	client := &http.Client{}
-	incognitoBlockchain := incognitoclient.NewBlockchain(
+	publicIncognito := incognitoclient.NewPublicIncognito(
 		client,
 		"https://testnet.incognito.org/fullnode",
-		"",
-		"",
-		"",
-		"0000000000000000000000000000000000000000000000000000000000000004",
 	)
 
-	return incognitoBlockchain
+	return (publicIncognito)
+}
+
+//
+// NewWallet creates an instance of a wallet from Incognito.
+//
+func NewWallet(publicIncognito *incognitoclient.PublicIncognito) *incognitoclient.Wallet {
+	blockInfo := incognitoclient.NewBlockInfo(publicIncognito)
+	wallet := incognitoclient.NewWallet(publicIncognito, blockInfo)
+
+	return (wallet)
 }
