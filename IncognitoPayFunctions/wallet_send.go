@@ -50,15 +50,15 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 	publicIncognito := incognito.PublicIncognito()
 	newWallet := incognito.NewWallet(publicIncognito)
 
-	transactionHash, error := newWallet.CreateAndSendConstantTransaction(
-		wallet.PrivateKey,
-		listPaymentAddresses,
-	)
+	// transactionHash, error := newWallet.CreateAndSendConstantTransaction(
+	// 	wallet.PrivateKey,
+	// 	listPaymentAddresses,
+	// )
 
-	if error != nil {
-		fmt.Fprint(response, error)
-		return
-	}
+	// if error != nil {
+	// 	fmt.Fprint(response, error)
+	// 	return
+	// }
 
-	fmt.Fprint(response, transactionHash)
+	// fmt.Fprint(response, transactionHash)
 }
