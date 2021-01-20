@@ -25,10 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  With the IncognitoPayKit for iOS, iOS developers are able to enhance their app features and provide their users with more financial and privacy options. Users can now make and receive payment in cryptocurrency while staying anonymous.  With the blockchain behind IncognitoPayKit for iOS being powered by Incognito https://incognito.org, cryptocurrency transactions can now be done anonymously. Whether users are used to making payments with cryptocurrency or it’s their first time, IncognitoPayKit for iOS will definitely work for them. Work is in progress as we at NO DANCE MONKEY keep looking for ways to improve this unique product and user experience. In addition, we have also developed a fork of Signal messenger app https://github.com/andreasreuter/IncognitoSignal-iOS which will be available in iOS app store soon.
+  With the IncognitoPayKit for iOS, iOS developers are able to enhance their app features and provide their users with more financial and privacy options. Users can now make and receive payment in cryptocurrency while staying anonymous.  With the blockchain behind IncognitoPayKit for iOS being powered by Incognito https://incognito.org, cryptocurrency transactions can now be done anonymously. Whether users are used to making payments with cryptocurrency or it’s their first time, IncognitoPayKit for iOS will definitely work for them. Work is in progress as we at NO DANCE MONKEY keep looking for ways to improve this unique product and user experience. In addition, we have also developed a fork of Signal messenger app https://github.com/IncognitoPayKit/Signal-iOS which will be available in iOS app store soon.
                    DESC
 
-  spec.homepage     = "https://www.nodancemonkey.com/IncognitoPayKit-for-iOS"
+  spec.homepage     = "www.incognitopaykit.com"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -80,7 +80,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/andreasreuter/IncognitoPayKit.git", :tag => "v#{spec.version}" }
+  spec.source       = { :git => "https://github.com/IncognitoPayKit/IncognitoPayKit.git", :tag => "v#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
