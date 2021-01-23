@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "rectangle.stack.fill.badge.plus.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "rectangle.stack.fill.badge.plus_light.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

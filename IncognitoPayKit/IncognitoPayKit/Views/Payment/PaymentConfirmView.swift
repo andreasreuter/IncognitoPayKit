@@ -35,7 +35,7 @@ class PaymentConfirmView: UIViewController {
     let button = UIButton()
     button.setTitle("Cancel", for: .normal)
     button.setTitleColor(
-      (traitCollection.userInterfaceStyle == .light ? .black : .white),
+      ColorCompatibility.label,
       for: .normal
     )
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)

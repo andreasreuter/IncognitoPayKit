@@ -12,8 +12,16 @@ class ActivityIndicatorView: UIView {
   override func willMove(toWindow newWindow: UIWindow?) {
     super.willMove(toWindow: newWindow)
     
+    var indicatorStyle: UIActivityIndicatorView.Style
+    if #available(iOS 13.0, *) {
+      indicatorStyle = UIActivityIndicatorView.Style.large
+    } else {
+      // Fallback on earlier versions
+      indicatorStyle = UIActivityIndicatorView.Style.whiteLarge
+    }
+    
     let activityIndicator = UIActivityIndicatorView(
-      style: UIActivityIndicatorView.Style.large
+      style: indicatorStyle
     )
     activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     activityIndicator.startAnimating()

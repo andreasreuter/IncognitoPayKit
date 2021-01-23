@@ -44,7 +44,7 @@ class ContactTableCell: UITableViewCell {
   override func willMove(toWindow newWindow: UIWindow?) {
     super.willMove(toWindow: newWindow)
     
-    backgroundColor = .secondarySystemBackground
+    backgroundColor = ColorCompatibility.secondarySystemBackground
     
     contentView.addSubview(contentImage)
     contentView.addSubview(titleLabel)

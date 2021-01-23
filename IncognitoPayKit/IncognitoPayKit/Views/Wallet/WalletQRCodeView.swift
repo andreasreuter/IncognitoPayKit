@@ -38,12 +38,20 @@ class WalletQRCodeView: UIViewController {
   
   fileprivate lazy var closeButton: UIButton = {
     let button = UIButton()
-    let xmark = UIImage(
-      systemName: "xmark",
-      withConfiguration: UIImage.SymbolConfiguration(scale: .large)
-    )
+    let xmark: UIImage?
+    
+    if #available(iOS 13.0, *) {
+      xmark = UIImage(
+        systemName: "xmark",
+        withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+      )
+    } else {
+      // Fallback on earlier versions
+      xmark = UIImage(named: "xmark")
+    }
+    
     button.setImage(xmark, for: .normal)
-    button.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
+    button.tintColor = ColorCompatibility.label
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
@@ -71,7 +79,7 @@ class WalletQRCodeView: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = (traitCollection.userInterfaceStyle == .light ? .white : .black)
+    view.backgroundColor = ColorCompatibility.systemBackground
     
     stackView.addArrangedSubview(walletQRCode)
     stackView.addArrangedSubview(copyButton)

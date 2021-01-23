@@ -11,12 +11,21 @@ import UIKit
 class ImportWalletView: UIViewController, UITextViewDelegate {
   fileprivate lazy var closeButton: UIButton = {
     let button = UIButton()
-    let xmark = UIImage(
-      systemName: "xmark",
-      withConfiguration: UIImage.SymbolConfiguration(scale: .large)
-    )
+    let xmark: UIImage?
+    
+    if #available(iOS 13.0, *) {
+      xmark = UIImage(
+        systemName: "xmark",
+        withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+      )
+      
+    } else {
+      // Fallback on earlier versions
+      xmark = UIImage(named: "xmark")
+    }
+    
     button.setImage(xmark, for: .normal)
-    button.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
+    button.tintColor = ColorCompatibility.label
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
@@ -38,7 +47,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
     textView.font = UIFont.systemFont(ofSize: 42, weight: .semibold)
     textView.text = "Enter your private key..."
     textView.textAlignment = .left
-    textView.backgroundColor = (traitCollection.userInterfaceStyle == .light ? .white : .black)
+    textView.backgroundColor = ColorCompatibility.systemBackground
     textView.autocorrectionType = .no
     textView.delegate = self
     textView.inputAccessoryView = toolbar
@@ -49,7 +58,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = (traitCollection.userInterfaceStyle == .light ? .white : .black)
+    view.backgroundColor = ColorCompatibility.systemBackground
     
     view.addSubview(closeButton)
     view.addSubview(importText)
