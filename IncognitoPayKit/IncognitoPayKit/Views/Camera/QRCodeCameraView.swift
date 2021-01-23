@@ -38,10 +38,18 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
   
   fileprivate let closeButton: UIButton = {
     let button = UIButton()
-    let xmark = UIImage(
-      systemName: "xmark",
-      withConfiguration: UIImage.SymbolConfiguration(scale: .large)
-    )
+    let xmark: UIImage?
+    
+    if #available(iOS 13.0, *) {
+      xmark = UIImage(
+        systemName: "xmark",
+        withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+      )
+    } else {
+      // Fallback on earlier versions
+      xmark = UIImage(named: "xmark")
+    }
+    
     button.setImage(xmark, for: .normal)
     button.tintColor = .white
     button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)

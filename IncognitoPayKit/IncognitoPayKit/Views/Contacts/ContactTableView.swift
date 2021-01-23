@@ -25,7 +25,7 @@ class ContactTableView: ContentSizedTableView, UITableViewDataSource, UITableVie
   override func willMove(toWindow newWindow: UIWindow?) {
     super.willMove(toWindow: newWindow)
     
-    backgroundColor = .secondarySystemBackground
+    backgroundColor = ColorCompatibility.secondarySystemBackground
     layer.cornerRadius = 10
     layer.masksToBounds = true
     clipsToBounds = true

@@ -39,6 +39,7 @@
 		E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */; };
 		E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70582256C00B900DC9AAA /* WalletQRCode.swift */; };
 		E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */; };
+		E1A85A4125BB1F8600BBFE06 /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A85A4025BB1F8600BBFE06 /* ColorCompatibility.swift */; };
 		E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8A3C1256D0B07009BDCB5 /* IncognitoButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayOptions.swift; sourceTree = "<group>"; };
 		E1A70582256C00B900DC9AAA /* WalletQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQRCode.swift; sourceTree = "<group>"; };
 		E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQRCodeView.swift; sourceTree = "<group>"; };
+		E1A85A4025BB1F8600BBFE06 /* ColorCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
 		E1E8A3C1256D0B07009BDCB5 /* IncognitoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 		E1A704D7256BB0F900DC9AAA /* IncognitoPayKit */ = {
 			isa = PBXGroup;
 			children = (
+				E1A85A3F25BB1F4900BBFE06 /* Compatibility */,
 				E1483CA22597D99D0088E145 /* Errors */,
 				E1693758258ED66B0098C525 /* Models */,
 				E1693743258EC3FD0098C525 /* Networking */,
@@ -250,6 +253,14 @@
 				E15F87D4259805F6009C95BD /* ImportWalletView.swift */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		E1A85A3F25BB1F4900BBFE06 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				E1A85A4025BB1F8600BBFE06 /* ColorCompatibility.swift */,
+			);
+			path = Compatibility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +356,7 @@
 				E10A30A82572F41200B03822 /* WalletDataKeychain.swift in Sources */,
 				E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */,
 				E1483C9F2597D5D10088E145 /* UIAlertController+Error.swift in Sources */,
+				E1A85A4125BB1F8600BBFE06 /* ColorCompatibility.swift in Sources */,
 				E169374B258EC77C0098C525 /* Config.swift in Sources */,
 				E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */,
 				E1483C8D259740170088E145 /* UIAlertController+Activity.swift in Sources */,
@@ -423,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -482,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -509,7 +521,7 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				INFOPLIST_FILE = IncognitoPayKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -541,7 +553,7 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				INFOPLIST_FILE = IncognitoPayKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -15,7 +15,7 @@ extension UIAlertController {
     let label = UILabel()
     label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
     label.text = text
-    label.textColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
+    label.textColor = ColorCompatibility.label
     label.translatesAutoresizingMaskIntoConstraints = false
     
     view.addSubview(uiView)
@@ -41,13 +41,19 @@ extension UIAlertController {
   }
   
   func addActivity(symbolName: String, text: String) {
-    let image = UIImage(
-      systemName: symbolName,
-      withConfiguration: UIImage.SymbolConfiguration(pointSize: 110)
-    )
+    let image: UIImage?
+    if #available(iOS 13.0, *) {
+      image = UIImage(
+        systemName: symbolName,
+        withConfiguration: UIImage.SymbolConfiguration(pointSize: 110)
+      )
+    } else {
+      // Fallback on earlier versions
+      image = UIImage(named: symbolName)
+    }
     
     let imageView = UIImageView(image: image)
-    imageView.tintColor = (traitCollection.userInterfaceStyle == .light ? .black : .white)
+    imageView.tintColor = ColorCompatibility.label
     imageView.translatesAutoresizingMaskIntoConstraints = false
     
     self.addActivity(imageView, text: text)
