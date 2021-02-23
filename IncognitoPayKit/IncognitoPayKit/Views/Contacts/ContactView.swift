@@ -11,9 +11,9 @@ import UIKit
 class ContactView: UIViewController {
   private(set) var base: UIViewController
   
-  private(set) var contactList: [String]
+  private(set) var contactList: [IncognitoContact]
   
-  required init(base: UIViewController, contactList: [String]) {
+  required init(base: UIViewController, contactList: [IncognitoContact]) {
     /*
      * contact view cannot be overwritten, therefore it is mandatory
      * to gain access to the outer view controller eg to show them.
@@ -75,16 +75,7 @@ class ContactView: UIViewController {
     
     view.blurView()
     
-    let tableView = ContactTableView([
-        Contact(firstName: "Andreas", lastName: "Reuter", image: "andireuter", walletAddress: "12S6MRSkhxRPUEcd4wdbQi6iKYaKipbzi8bAqrEfC8XKQJ3MGrhPKgxgbupfVSQMVkdgWzPH7RHtJ7nF9nyvagtpFqCtRFREyThZgVP"),
-        Contact(firstName: "Susi", lastName: "", walletAddress: "12Ry2Q7DTimLyfBoGecMKzEAMVNtrLg1geZRypk8ynywvs6CU4j6JSNHMjv7XrnhsELEHoRUiDnhyEvE2AUBNavAVEzJ1aBBz54L3xM"),
-        Contact(firstName: "Seppel", lastName: "", walletAddress: "xyz"),
-        Contact(firstName: "Weihnachtsmann", lastName: "", walletAddress: "xyz"),
-        Contact(firstName: "Jesus", lastName: "", walletAddress: "xyz"),
-        Contact(firstName: "Nuni", lastName: "Wuni", walletAddress: "xyz")
-      ],
-      contactTapped
-    )
+    let tableView = ContactTableView(contactList, contactTapped)
     tableView.translatesAutoresizingMaskIntoConstraints = false
     
     view.addSubview(closeButton)
@@ -137,7 +128,7 @@ class ContactView: UIViewController {
     self.present(camera, animated: true)
   }
   
-  private func contactTapped(_ contact: Contact) {
+  private func contactTapped(_ contact: IncognitoContact) {
     print("Contact row tapped.")
     let payment = PaymentView(base: self, contact: contact)
     payment.modalPresentationStyle = .overCurrentContext

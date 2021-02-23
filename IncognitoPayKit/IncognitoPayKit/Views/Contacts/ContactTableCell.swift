@@ -9,9 +9,9 @@
 import UIKit
 
 class ContactTableCell: UITableViewCell {
-  private var contact: Contact? = nil
+  private var contact: IncognitoContact? = nil
   
-  convenience init(_ contact: Contact) {
+  convenience init(_ contact: IncognitoContact) {
     self.init()
     self.contact = contact
   }

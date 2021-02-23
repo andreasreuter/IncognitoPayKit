@@ -10,14 +10,14 @@ import Foundation
 
 class Payment {
   static func walletSend(privateKey: String, walletAddress: String, privacyCoins: String, completion: @escaping (String?) -> Void) throws {
-    let sendPayload = WalletSendPayload(
+    let walletSend = WalletSend(
       privateKey: privateKey,
       recipientWalletAddress: walletAddress,
       privacyCoins: privacyCoins
     )
     
     let wallet = WalletAPI()
-    try wallet.walletSend(walletSendPayload: sendPayload, completion: { transactionHash in
+    try wallet.walletSend(walletSend: walletSend, completion: { transactionHash in
       completion(transactionHash)
     })
   }

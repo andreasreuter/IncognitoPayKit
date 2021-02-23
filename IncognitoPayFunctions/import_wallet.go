@@ -8,6 +8,7 @@ import (
 
 	"github.com/incognitochain/go-incognito-sdk/privacy"
 	wallet2 "github.com/incognitochain/go-incognito-sdk/wallet"
+	remittee "ndncmnky.com/IncognitoPayFunctions/Incognito"
 )
 
 //
@@ -16,6 +17,7 @@ import (
 //
 func ImportWallet(response http.ResponseWriter, request *http.Request) {
 	var wallet struct {
+		Id         string `json:"id"`
 		PrivateKey string `json:"privateKey"`
 	}
 
@@ -45,10 +47,23 @@ func ImportWallet(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	walletAddress := keyWallet.Base58CheckSerialize(wallet2.PaymentAddressType)
+
+	/*
+	 * import wallet address in Cloud Firestore because its used to
+	 * execute payments to any of the contacts, they are public anyhow.
+	 */
+	error = remittee.Insert(wallet.Id, walletAddress)
+
+	if error != nil {
+		fmt.Fprint(response, error)
+		return
+	}
+
 	importWallet.PrivateKey = wallet.PrivateKey
 	importWallet.PublicKey = hex.EncodeToString(privacy.GeneratePublicKey(keyWallet.KeySet.PrivateKey))
 	importWallet.ReadonlyKey = keyWallet.Base58CheckSerialize(wallet2.ReadonlyKeyType)
-	importWallet.WalletAddress = keyWallet.Base58CheckSerialize(wallet2.PaymentAddressType)
+	importWallet.WalletAddress = walletAddress
 
 	encoder := json.NewEncoder(response)
 	encoder.Encode(&importWallet)
