@@ -10,7 +10,8 @@ import (
 
 //
 // WalletTransaction is hosted as Cloud Function. It takes a wallet address
-// and its readonly key. It responds with the transaction info.
+// and its readonly key. It collects transactions of a wallet by its wallet
+// address.
 //
 func WalletTransaction(response http.ResponseWriter, request *http.Request) {
 	var wallet struct {
