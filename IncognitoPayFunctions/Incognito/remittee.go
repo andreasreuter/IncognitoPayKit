@@ -6,11 +6,12 @@ import (
 
 	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
+	"google.golang.org/api/iterator"
 )
 
 type Remittee struct {
 	Id            string `firestore:"id"`
-	WalletAddress string `firestore:wallet_address"`
+	WalletAddress string `firestore:"wallet_address"`
 }
 
 //
@@ -56,6 +57,44 @@ func Insert(id string, walletAddress string) error {
 	defer client.Close()
 
 	return (nil)
+}
+
+func Retrieve(ids []string) ([]Remittee, error) {
+	var error error
+
+	client, error := createClient()
+
+	if error != nil {
+		return (nil), (error)
+	}
+
+	remittees := client.Collection("remittees")
+	iter := remittees.Where("id", "in", ids).Documents(context.Background())
+
+	var results []Remittee
+
+	for {
+		doc, error := iter.Next()
+
+		if error == iterator.Done {
+			break
+		}
+
+		if error != nil {
+			return (nil), (error)
+		}
+
+		var remittee Remittee
+		error = doc.DataTo(&remittee)
+
+		if error != nil {
+			return (nil), (error)
+		}
+
+		results = append(results, remittee)
+	}
+
+	return (results), (nil)
 }
 
 func createClient() (*firestore.Client, error) {
