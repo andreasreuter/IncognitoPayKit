@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "IncognitoPayKit"
   spec.version      = "1.0.0"
-  spec.summary      = "Why should users be limited when they can have options? IncognitoPayKit for iOS creates a cryptocurrency payment option for users, where they can make and receive payment in cryptocurrency. What’s more, they get to perform their transactions anonymously! With the IncognitoPayKit for iOS, users get more options, more privacy and more freedom!"
+  spec.summary      = "Why should users be limited when they can have options? Incognito Pay Kit for iOS creates a cryptocurrency payment option for users, where they can make and receive payment in cryptocurrency. What’s more, they get to perform their transactions anonymously! With the Incognito Pay Kit for iOS, users get more options, more privacy and more freedom!"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  With the IncognitoPayKit for iOS, iOS developers are able to enhance their app features and provide their users with more financial and privacy options. Users can now make and receive payment in cryptocurrency while staying anonymous.  With the blockchain behind IncognitoPayKit for iOS being powered by Incognito https://incognito.org, cryptocurrency transactions can now be done anonymously. Whether users are used to making payments with cryptocurrency or it’s their first time, IncognitoPayKit for iOS will definitely work for them. Work is in progress as we at NO DANCE MONKEY keep looking for ways to improve this unique product and user experience. In addition, we have also developed a fork of Signal messenger app https://github.com/IncognitoPayKit/Signal-iOS which will be available in iOS app store soon.
+  With the Incognito Pay Kit for iOS, iOS developers are able to enhance their app features and provide their users with more financial and privacy options. Users can now make and receive payment in cryptocurrency while staying anonymous.  With the blockchain behind Incognito Pay Kit for iOS being powered by Incognito https://incognito.org, cryptocurrency transactions can now be done anonymously. Whether users are used to making payments with cryptocurrency or it’s their first time, Incognito Pay Kit for iOS will definitely work for them. Work is in progress as we at NO DANCE MONKEY keep looking for ways to improve this unique product and user experience. In addition, we have also developed a fork of Signal messenger app https://github.com/Incognito Pay Kit/Signal-iOS which will be available in iOS app store soon.
                    DESC
 
   spec.homepage     = "www.incognitopaykit.com"
