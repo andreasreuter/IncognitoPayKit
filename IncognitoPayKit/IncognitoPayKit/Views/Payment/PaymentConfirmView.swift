@@ -11,11 +11,11 @@ import UIKit
 class PaymentConfirmView: UIViewController {
   private(set) var base: UIViewController
   
-  private var contact: Contact
+  private var contact: IncognitoContact
   
   private var amount: String
   
-  required init(base: UIViewController, contact: Contact, amount: String) {
+  required init(base: UIViewController, contact: IncognitoContact, amount: String) {
     /*
      * payment view cannot be overwritten, therefore it is mandatory
      * to gain access to the outer view controller eg to show them.

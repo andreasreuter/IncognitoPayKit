@@ -9,6 +9,18 @@
 import UIKit
 
 class ImportWalletView: UIViewController, UITextViewDelegate {
+  private let id: String
+  
+  public init(id: String) {
+    self.id = id
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  public required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   fileprivate lazy var closeButton: UIButton = {
     let button = UIButton()
     let xmark: UIImage?
@@ -107,7 +119,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
     self.present(loadingAlert, animated: true)
     
     do {
-      try NewWallet.importWallet(privateKey: importText.text!) { wallet in
+      try NewWallet.importWallet(privateKey: importText.text!, id: id) { wallet in
         do {
           guard let _ = wallet else {
             throw WalletError.nilWallet
@@ -118,7 +130,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
           DispatchQueue.main.async {
             loadingAlert.dismiss(animated: true) {
               let activityAlert = UIAlertController.activityAlert(
-                symbolName: "rectangle.stack.fill.badge.plus",
+                symbolName: "rectangle.fill.badge.plus",
                 text: "Wallet imported!"
               )
               self.present(activityAlert, animated: true)

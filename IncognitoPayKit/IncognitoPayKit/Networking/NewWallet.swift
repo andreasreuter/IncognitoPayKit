@@ -9,18 +9,18 @@
 import Foundation
 
 class NewWallet {
-  static func newWallet(completion: @escaping (Wallet?) -> Void) throws {
+  static func newWallet(id: String, completion: @escaping (Wallet?) -> Void) throws {
     let wallet = WalletAPI()
-    try wallet.newWallet(completion: { wallet in
+    try wallet.newWallet(id: id, completion: { wallet in
       completion(wallet)
     })
   }
   
-  static func importWallet(privateKey: String, completion: @escaping (Wallet?) -> Void) throws {
-    let importPayload = WalletImportPayload(privateKey: privateKey)
+  static func importWallet(privateKey: String, id: String, completion: @escaping (Wallet?) -> Void) throws {
+    let importWallet = ImportWallet(privateKey: privateKey, id: id)
     
     let wallet = WalletAPI()
-    try wallet.importWallet(walletImportPayload: importPayload, completion: { wallet in
+    try wallet.importWallet(importWallet: importWallet, completion: { wallet in
       completion(wallet)
     })
   }

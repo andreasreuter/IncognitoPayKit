@@ -15,12 +15,18 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
   
   private let spacing: CGFloat = 35
   
-  public required init(base: UIViewController) {
+  private var contactList: [IncognitoContact]
+  
+  private let id: String
+  
+  public required init(base: UIViewController, contactList: [IncognitoContact], id: String) {
     /*
      * pay button actions cannot be overwritten, therefore it is mandatory
      * to gain access to the outer view controller eg to show action sheet.
      */
     self.base = base
+    self.contactList = contactList
+    self.id = id
     
     super.init(frame: CGRect.zero)
     
@@ -47,7 +53,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
       let incognitoPayOptions = IncognitoPayOptions(
         sendTo: {
           print("Incognito Pay send coin to.")
-          let contacts = ContactView(base: self.base, contactList: [])
+          let contacts = ContactView(base: self.base, contactList: self.contactList)
           contacts.modalPresentationStyle = .overCurrentContext
           self.base.present(contacts, animated: true)
         },
@@ -70,7 +76,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
        * or create a new wallet.
        */
       let newWalletOptions = NewWalletOptions(
-        newWallet: {
+        newWallet: { [self] in
           print("Incognito Pay create new wallet.")
           
           let loadingAlert = UIAlertController.loadingAlert(
@@ -79,7 +85,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
           self.base.present(loadingAlert, animated: true)
           
           do {
-            try NewWallet.newWallet { wallet in
+            try NewWallet.newWallet(id: id) { wallet in
               do {
                 guard let _ = wallet else {
                   throw WalletError.nilWallet
@@ -90,7 +96,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
                     let activityAlert = UIAlertController.activityAlert(
-                      symbolName: "rectangle.stack.fill.badge.plus",
+                      symbolName: "rectangle.fill.badge.plus",
                       text: "Wallet created!"
                     )
                     self.base.present(activityAlert, animated: true)
@@ -140,9 +146,9 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
             }
           }
         },
-        importWallet: {
+        importWallet: { [self] in
           print("Incognito Pay import wallet.")
-          self.base.present(ImportWalletView(), animated: true)
+          self.base.present(ImportWalletView(id: id), animated: true)
         }
       )
       
