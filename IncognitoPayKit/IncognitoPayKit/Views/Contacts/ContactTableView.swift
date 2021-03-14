@@ -9,7 +9,7 @@
 import UIKit
 
 class ContactTableView: ContentSizedTableView, UITableViewDataSource, UITableViewDelegate {
-  private var contactList: [IncognitoContact] = []
+  var contactList: [IncognitoContact] = []
   
   private var clickCell: ((_ contact: IncognitoContact) -> Void)? = nil
   

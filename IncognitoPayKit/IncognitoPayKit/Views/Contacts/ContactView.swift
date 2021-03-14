@@ -11,7 +11,7 @@ import UIKit
 class ContactView: UIViewController {
   private(set) var base: UIViewController
   
-  private(set) var contactList: [IncognitoContact]
+  private(set) var contactList: [IncognitoContact] = [IncognitoContact]()
   
   required init(base: UIViewController, contactList: [IncognitoContact]) {
     /*
@@ -75,12 +75,22 @@ class ContactView: UIViewController {
     
     view.blurView()
     
-    let tableView = ContactTableView(contactList, contactTapped)
+    let tableView = ContactTableView([], contactTapped)
     tableView.translatesAutoresizingMaskIntoConstraints = false
     
     view.addSubview(closeButton)
     view.addSubview(cameraButton)
     view.addSubview(tableView)
+    
+    /*
+     * exclude contacts from contact list who are unkown remittee contacts.
+     */
+    try? RemitteeContact.synchronise(contactList: contactList) { remitteeContacts in
+      DispatchQueue.main.async {
+        tableView.contactList = remitteeContacts
+        tableView.reloadData()
+      }
+    }
     
     NSLayoutConstraint.activate([
       closeButton.topAnchor.constraint(

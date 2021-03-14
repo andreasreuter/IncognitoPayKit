@@ -15,7 +15,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
   
   private let spacing: CGFloat = 35
   
-  private let contactList: [IncognitoContact]
+  private var contactList: [IncognitoContact]
   
   private let id: String
   

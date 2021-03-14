@@ -193,4 +193,40 @@ class WalletAPI {
     }
     .resume()
   }
+  
+  func retrieveRemittee(ids: [String], completion: @escaping ([Remittee]) -> Void) throws {
+    guard let url = URL(string: try Config.value(for: "REST_API_BASE_URL") + "/RetrieveRemittee") else {
+      print("Error: cannot get api base url")
+      return
+    }
+    
+    guard let jsonData = try? JSONEncoder().encode(ids) else {
+      print("Error: cannot cast parameters to json")
+      return
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = jsonData
+    
+    URLSession.shared.dataTask(with: request) { (data, response, error) in
+      if let error = error {
+        print("Error returning remittees: \(error)")
+        return
+      }
+      
+      guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+        print("Error unexpecting status code: \(response!)")
+        return
+      }
+      
+      if let data = data,
+         let remittees = try? JSONDecoder().decode([Remittee].self, from: data) {
+        completion(remittees)
+      }
+    }
+    .resume()
+  }
 }

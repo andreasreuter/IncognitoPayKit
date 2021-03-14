@@ -10,7 +10,7 @@ public struct IncognitoContact {
   private(set) var lastName: String
   private(set) var image: String?
   private(set) var id: String
-  private(set) var walletAddress: String
+  public var walletAddress: String
   
   public init(firstName: String, lastName: String, image: String?, id: String, walletAddress: String) {
     self.firstName = firstName

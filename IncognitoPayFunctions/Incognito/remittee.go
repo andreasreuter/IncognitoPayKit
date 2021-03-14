@@ -6,7 +6,6 @@ import (
 
 	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
-	"google.golang.org/api/iterator"
 )
 
 type Remittee struct {
@@ -60,6 +59,7 @@ func Insert(id string, walletAddress string) error {
 }
 
 func Retrieve(ids []string) ([]Remittee, error) {
+	var remitteeList []Remittee
 	var error error
 
 	client, error := createClient()
@@ -69,32 +69,25 @@ func Retrieve(ids []string) ([]Remittee, error) {
 	}
 
 	remittees := client.Collection("remittees")
-	iter := remittees.Where("id", "in", ids).Documents(context.Background())
+	docs := remittees.Documents(context.Background())
+	snap, _ := docs.GetAll()
 
-	var results []Remittee
+	if len(snap) > 0 {
+		for _, doc := range snap {
+			var remittee Remittee
+			error = doc.DataTo(&remittee)
 
-	for {
-		doc, error := iter.Next()
+			if error != nil {
+				return (nil), (error)
+			}
 
-		if error == iterator.Done {
-			break
+			if contains(ids, remittee.Id) {
+				remitteeList = append(remitteeList, remittee)
+			}
 		}
-
-		if error != nil {
-			return (nil), (error)
-		}
-
-		var remittee Remittee
-		error = doc.DataTo(&remittee)
-
-		if error != nil {
-			return (nil), (error)
-		}
-
-		results = append(results, remittee)
 	}
 
-	return (results), (nil)
+	return (remitteeList), (nil)
 }
 
 func createClient() (*firestore.Client, error) {
@@ -127,4 +120,14 @@ func remitteeBy(client *firestore.Client, column string, value string) *Remittee
 	}
 
 	return (remittee)
+}
+
+func contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+
+	return false
 }

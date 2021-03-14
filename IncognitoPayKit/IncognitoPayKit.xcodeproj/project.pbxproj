@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1018A1925FD9A0200768BC6 /* Remittee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1018A1825FD9A0200768BC6 /* Remittee.swift */; };
+		E1018A1B25FE143200768BC6 /* RemitteeContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1018A1A25FE143200768BC6 /* RemitteeContact.swift */; };
 		E10A30A22572F2D500B03822 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A30A12572F2D500B03822 /* Keychain.swift */; };
 		E10A30A72572F41200B03822 /* WalletData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A30A52572F41200B03822 /* WalletData.swift */; };
 		E10A30A82572F41200B03822 /* WalletDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A30A62572F41200B03822 /* WalletDataKeychain.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E1018A1825FD9A0200768BC6 /* Remittee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remittee.swift; sourceTree = "<group>"; };
+		E1018A1A25FE143200768BC6 /* RemitteeContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemitteeContact.swift; sourceTree = "<group>"; };
 		E10A30A12572F2D500B03822 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		E10A30A52572F41200B03822 /* WalletData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletData.swift; sourceTree = "<group>"; };
 		E10A30A62572F41200B03822 /* WalletDataKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDataKeychain.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				E15E548B25961CD000B1D5D8 /* NewWallet.swift */,
 				E1483CAD2597E0F20088E145 /* Payment.swift */,
 				E1693744258EC4310098C525 /* WalletAPI.swift */,
+				E1018A1A25FE143200768BC6 /* RemitteeContact.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			children = (
 				E1693759258ED6960098C525 /* Wallet.swift */,
 				E14DF654259220D900BADF50 /* IncognitoContact.swift */,
+				E1018A1825FD9A0200768BC6 /* Remittee.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 				E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */,
 				E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */,
 				E14DF655259220D900BADF50 /* IncognitoContact.swift in Sources */,
+				E1018A1B25FE143200768BC6 /* RemitteeContact.swift in Sources */,
 				E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */,
 				E12D39842590C256006D25EF /* ContactView.swift in Sources */,
 				E17E2F5425725EF1003CBA24 /* CornerView.swift in Sources */,
@@ -370,6 +377,7 @@
 				E1483CAE2597E0F20088E145 /* Payment.swift in Sources */,
 				E12D397E25900378006D25EF /* ContactTableCell.swift in Sources */,
 				E1693745258EC4310098C525 /* WalletAPI.swift in Sources */,
+				E1018A1925FD9A0200768BC6 /* Remittee.swift in Sources */,
 				E14DF6592592513F00BADF50 /* ContentSizedTableView.swift in Sources */,
 				E15E54A625967C8700B1D5D8 /* UIView+BlurView.swift in Sources */,
 				E15F87D5259805F6009C95BD /* ImportWalletView.swift in Sources */,
