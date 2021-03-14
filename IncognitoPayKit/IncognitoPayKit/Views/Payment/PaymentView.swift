@@ -11,9 +11,9 @@ import UIKit
 class PaymentView: UIViewController, UITextFieldDelegate {
   private(set) var base: UIViewController
   
-  private var contact: Contact
+  private var contact: IncognitoContact
   
-  required init(base: UIViewController, contact: Contact) {
+  required init(base: UIViewController, contact: IncognitoContact) {
     /*
      * payment view cannot be overwritten, therefore it is mandatory
      * to gain access to the outer view controller eg to show them.

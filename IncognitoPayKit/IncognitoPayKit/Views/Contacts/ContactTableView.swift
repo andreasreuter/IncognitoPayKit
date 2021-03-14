@@ -9,11 +9,11 @@
 import UIKit
 
 class ContactTableView: ContentSizedTableView, UITableViewDataSource, UITableViewDelegate {
-  private var contactList: [Contact] = []
+  var contactList: [IncognitoContact] = []
   
-  private var clickCell: ((_ contact: Contact) -> Void)? = nil
+  private var clickCell: ((_ contact: IncognitoContact) -> Void)? = nil
   
-  convenience init(_ contactList: [Contact], _ clickCell: @escaping (_ contact: Contact) -> Void) {
+  convenience init(_ contactList: [IncognitoContact], _ clickCell: @escaping (_ contact: IncognitoContact) -> Void) {
     self.init()
     self.contactList = contactList
     self.clickCell = clickCell
