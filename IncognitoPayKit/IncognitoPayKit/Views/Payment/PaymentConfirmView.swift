@@ -204,7 +204,7 @@ class PaymentConfirmView: UIViewController {
   
   @objc final public func closeButtonTapped() {
     print("Payment close button tapped.")
-    self.dismiss(animated: true)
+    self.base.dismiss(animated: true)
   }
   
   @objc final public func confirmButtonTapped() {
