@@ -213,27 +213,31 @@ class PaymentConfirmView: UIViewController {
     let loadingAlert = UIAlertController.loadingAlert(
       text: "Send coins to..."
     )
-    self.present(loadingAlert, animated: true)
+    self.base.present(loadingAlert, animated: true)
     
     do {
       let keychain = WalletDataKeychain()
       let walletData = try keychain.retrieve()
-      
+        
+      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
+        loadingAlert.dismiss(animated: true)
+      }
+
       do {
         try Payment.walletSend(privateKey: walletData.privateKey, walletAddress: contact.walletAddress, privacyCoins: amount) { transactionHash in
           do {
             guard let _ = transactionHash else {
               throw PaymentError.interrupted
             }
-            
+
             DispatchQueue.main.async {
               loadingAlert.dismiss(animated: true) {
                 let activityAlert = UIAlertController.activityAlert(
                   symbolName: "checkmark.circle.fill",
-                  text: "Wallet created!"
+                  text: "Your coins are sent!"
                 )
-                self.present(activityAlert, animated: true)
-                
+                self.base.present(activityAlert, animated: true)
+
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
                   activityAlert.dismiss(animated: true)
                 }
@@ -241,34 +245,34 @@ class PaymentConfirmView: UIViewController {
             }
           } catch {
             print("Error send coins via backend: \(error).")
-            
+
             DispatchQueue.main.async {
               loadingAlert.dismiss(animated: true) {
                 let errorAlert = UIAlertController.errorAlert(
-                  title: "Temporary error",
+                  title: "Coins were not transferred",
                   message: "Cannot send coins from your wallet. Try again!"
                 )
-                self.present(errorAlert, animated: true)
+                self.base.present(errorAlert, animated: true)
               }
             }
           }
         }
       } catch {
         print("Error send coins via backend: \(error).")
-        
+
         DispatchQueue.main.async {
           loadingAlert.dismiss(animated: true) {
             let errorAlert = UIAlertController.errorAlert(
-              title: "Temporary error",
+              title: "Coins were not transferred",
               message: "Cannot send coins from your wallet: \(error). Try again!"
             )
-            self.present(errorAlert, animated: true)
+            self.base.present(errorAlert, animated: true)
           }
         }
       }
     } catch {
       print("Error load wallet from Keychain: \(error).")
-      
+
       DispatchQueue.main.async {
         loadingAlert.dismiss(animated: true) {
           let errorAlert = UIAlertController.errorAlert(
@@ -279,7 +283,7 @@ class PaymentConfirmView: UIViewController {
               Before you try again!
             """
           )
-          self.present(errorAlert, animated: true)
+          self.base.present(errorAlert, animated: true)
         }
       }
     }
