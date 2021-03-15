@@ -4,6 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
+	"strings"
+
+	incognito "ndncmnky.com/IncognitoPayFunctions/Incognito"
 )
 
 //
@@ -27,32 +31,29 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 	 * cast a numeric value of Privacy coins to uint64. It removes all
 	 * white space from string.
 	 */
-	// privacyCoins, error := strconv.ParseUint(strings.TrimSpace(wallet.PrivacyCoins), 0, 64)
+	privacyCoins, error := strconv.ParseUint(strings.TrimSpace(wallet.PrivacyCoins), 0, 64)
 
-	// if error != nil {
-	// 	fmt.Fprint(response, error)
-	// 	return
-	// }
+	if error != nil {
+		fmt.Fprint(response, error)
+		return
+	}
 
-	// listPaymentAddresses := entity.WalletSend{
-	// 	Type: 0,
-	// 	PaymentAddresses: map[string]uint64{
-	// 		wallet.RecipientWalletAddress: privacyCoins,
-	// 	},
-	// }
+	publicIncognito := incognito.PublicIncognito()
+	newWallet := incognito.NewWallet(publicIncognito)
 
-	// publicIncognito := incognito.PublicIncognito()
-	// newWallet := incognito.NewWallet(publicIncognito)
+	transactionHash, error := newWallet.SendToken(
+		wallet.PrivateKey,
+		wallet.RecipientWalletAddress,
+		"0000000000000000000000000000000000000000000000000000000000000004", // Privacy coin,
+		privacyCoins,
+		0,
+		"",
+	)
 
-	// transactionHash, error := newWallet.CreateAndSendConstantTransaction(
-	// 	wallet.PrivateKey,
-	// 	listPaymentAddresses,
-	// )
+	if error != nil {
+		fmt.Fprint(response, error)
+		return
+	}
 
-	// if error != nil {
-	// 	fmt.Fprint(response, error)
-	// 	return
-	// }
-
-	// fmt.Fprint(response, transactionHash)
+	fmt.Fprint(response, transactionHash)
 }
