@@ -35,7 +35,6 @@ class PaymentView: UIViewController, UITextFieldDelegate {
       ColorCompatibility.label,
       for: .normal
     )
-    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -50,7 +49,7 @@ class PaymentView: UIViewController, UITextFieldDelegate {
   fileprivate lazy var amountText: UITextField = {
     let textField = UITextField()
     textField.font = UIFont.systemFont(ofSize: 70, weight: .medium)
-    textField.text = "0.00"
+    textField.text = "0,00"
     textField.textAlignment = .center
     textField.keyboardType = .decimalPad
     textField.delegate = self
@@ -68,7 +67,6 @@ class PaymentView: UIViewController, UITextFieldDelegate {
   fileprivate let previewButton: UIButton = {
     let button = IncognitoButton(title: "Show preview")
     button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-    button.addTarget(self, action: #selector(previewButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -77,6 +75,13 @@ class PaymentView: UIViewController, UITextFieldDelegate {
     super.viewWillAppear(animated)
     
     view.blurView()
+    
+    /*
+     * Cannot add button targets in initial function because at this time
+     * the handler isn't available.
+     */
+    closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    previewButton.addTarget(self, action: #selector(previewButtonTapped), for: .touchUpInside)
     
     view.addSubview(closeButton)
     view.addSubview(contactInfo)
@@ -123,6 +128,24 @@ class PaymentView: UIViewController, UITextFieldDelegate {
     ])
   }
   
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    print("Amount text field should change.")
+    
+    guard let amountText = textField.text else {
+      return (false)
+    }
+    
+    if (amountText.components(separatedBy: ",").count == 2 && string.contains(",")) {
+      return (false)
+    }
+    
+    if (!Payment.isPrivacyCoinGenuine(in: string)) {
+      return (false)
+    }
+    
+    return (true)
+  }
+  
   @objc final public func closeButtonTapped() {
     print("Payment close button tapped.")
     
@@ -140,9 +163,9 @@ class PaymentView: UIViewController, UITextFieldDelegate {
     /*
      * dismiss keyboard, before present other views.
      */
-    view.endEditing(true)
+    //view.endEditing(true)
     
-    let paymentConfirm = PaymentConfirmView(base: self, contact: contact, amount: amountText.text!)
+    let paymentConfirm = PaymentConfirmView(base: self.base, contact: contact, amount: amountText.text!)
     paymentConfirm.modalPresentationStyle = .overCurrentContext
     paymentConfirm.modalTransitionStyle = .crossDissolve
     self.present(paymentConfirm, animated: true)

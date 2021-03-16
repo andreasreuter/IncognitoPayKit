@@ -52,14 +52,12 @@ class WalletQRCodeView: UIViewController {
     
     button.setImage(xmark, for: .normal)
     button.tintColor = ColorCompatibility.label
-    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
   
   fileprivate let copyButton: UIButton = {
     let button = IncognitoButton(title: "Copy my wallet address")
-    button.addTarget(self, action: #selector(copyButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -80,6 +78,13 @@ class WalletQRCodeView: UIViewController {
     super.viewDidLoad()
     
     view.backgroundColor = ColorCompatibility.systemBackground
+    
+    /*
+     * Cannot add button targets in initial function because at this time
+     * the handler isn't available.
+     */
+    closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    copyButton.addTarget(self, action: #selector(copyButtonTapped), for: .touchUpInside)
     
     stackView.addArrangedSubview(walletQRCode)
     stackView.addArrangedSubview(copyButton)

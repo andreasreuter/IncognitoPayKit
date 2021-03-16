@@ -2,6 +2,7 @@ package IncognitoPayFunctions
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -27,9 +28,16 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	isGenuine, error := isPrivacyCoinGenuine(wallet.PrivacyCoins)
+
+	if !isGenuine && error != nil {
+		fmt.Fprint(response, error)
+		return
+	}
+
 	/*
 	 * cast a numeric value of Privacy coins to uint64. It removes all
-	 * white space from string.
+	 * white spaces from string.
 	 */
 	privacyCoins, error := strconv.ParseUint(strings.TrimSpace(wallet.PrivacyCoins), 0, 64)
 
@@ -56,4 +64,12 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 	}
 
 	fmt.Fprint(response, transactionHash)
+}
+
+func isPrivacyCoinGenuine(privacyCoins string) (bool, error) {
+	if strings.ContainsAny(privacyCoins, " .,") {
+		return (false), (errors.New("Invalid privacy coin value because of white spaces, puncts and commas"))
+	}
+
+	return (true), (nil)
 }

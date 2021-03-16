@@ -44,7 +44,6 @@ class ContactView: UIViewController {
     
     button.setImage(xmark, for: .normal)
     button.tintColor = ColorCompatibility.label
-    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -65,7 +64,6 @@ class ContactView: UIViewController {
     
     button.setImage(qrCode, for: .normal)
     button.tintColor = ColorCompatibility.label
-    button.addTarget(self, action: #selector(cameraButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -74,6 +72,13 @@ class ContactView: UIViewController {
     super.viewDidLoad()
     
     view.blurView()
+    
+    /*
+     * Cannot add button targets in initial function because at this time
+     * the handler isn't available.
+     */
+    closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    cameraButton.addTarget(self, action: #selector(cameraButtonTapped), for: .touchUpInside)
     
     let tableView = ContactTableView([], contactTapped)
     tableView.translatesAutoresizingMaskIntoConstraints = false

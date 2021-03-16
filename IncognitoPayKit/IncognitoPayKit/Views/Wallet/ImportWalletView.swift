@@ -38,7 +38,6 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
     
     button.setImage(xmark, for: .normal)
     button.tintColor = ColorCompatibility.label
-    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -71,6 +70,12 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
     super.viewDidLoad()
     
     view.backgroundColor = ColorCompatibility.systemBackground
+    
+    /*
+     * Cannot add button targets in initial function because at this time
+     * the handler isn't available.
+     */
+    closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     
     view.addSubview(closeButton)
     view.addSubview(importText)

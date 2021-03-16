@@ -38,7 +38,6 @@ class PaymentConfirmView: UIViewController {
       ColorCompatibility.label,
       for: .normal
     )
-    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -119,7 +118,6 @@ class PaymentConfirmView: UIViewController {
   fileprivate let confirmButton: UIButton = {
     let button = IncognitoButton(title: "Send now")
     button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-    button.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -128,6 +126,13 @@ class PaymentConfirmView: UIViewController {
     super.viewWillAppear(animated)
     
     view.blurView()
+    
+    /*
+     * Cannot add button targets in initial function because at this time
+     * the handler isn't available.
+     */
+    closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
     
     view.addSubview(closeButton)
     view.addSubview(image)
@@ -204,7 +209,7 @@ class PaymentConfirmView: UIViewController {
   
   @objc final public func closeButtonTapped() {
     print("Payment close button tapped.")
-    self.base.dismiss(animated: true)
+    self.dismiss(animated: true)
   }
   
   @objc final public func confirmButtonTapped() {
@@ -213,7 +218,7 @@ class PaymentConfirmView: UIViewController {
     let loadingAlert = UIAlertController.loadingAlert(
       text: "Send coins to..."
     )
-    self.base.present(loadingAlert, animated: true)
+    self.present(loadingAlert, animated: true)
     
     do {
       let keychain = WalletDataKeychain()
@@ -236,7 +241,7 @@ class PaymentConfirmView: UIViewController {
                   symbolName: "checkmark.circle.fill",
                   text: "Your coins are sent!"
                 )
-                self.base.present(activityAlert, animated: true)
+                self.present(activityAlert, animated: true)
 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
                   activityAlert.dismiss(animated: true)
@@ -252,7 +257,7 @@ class PaymentConfirmView: UIViewController {
                   title: "Coins were not transferred",
                   message: "Cannot send coins from your wallet. Try again!"
                 )
-                self.base.present(errorAlert, animated: true)
+                self.present(errorAlert, animated: true)
               }
             }
           }
@@ -266,7 +271,7 @@ class PaymentConfirmView: UIViewController {
               title: "Coins were not transferred",
               message: "Cannot send coins from your wallet: \(error). Try again!"
             )
-            self.base.present(errorAlert, animated: true)
+            self.present(errorAlert, animated: true)
           }
         }
       }
@@ -283,7 +288,7 @@ class PaymentConfirmView: UIViewController {
               Before you try again!
             """
           )
-          self.base.present(errorAlert, animated: true)
+          self.present(errorAlert, animated: true)
         }
       }
     }

@@ -52,7 +52,6 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     
     button.setImage(xmark, for: .normal)
     button.tintColor = .white
-    button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -66,6 +65,12 @@ class QRCodeCameraView: UIViewController, AVCaptureMetadataOutputObjectsDelegate
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    
+    /*
+     * Cannot add button targets in initial function because at this time
+     * the handler isn't available.
+     */
+    closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
     
     /*
      * close button, bring to top of camera.
