@@ -222,7 +222,7 @@ class PaymentConfirmView: UIViewController {
     
     do {
       let keychain = WalletDataKeychain()
-      let walletData = try keychain.retrieve()
+      let walletData = try keychain.read()
         
       DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
         loadingAlert.dismiss(animated: true)

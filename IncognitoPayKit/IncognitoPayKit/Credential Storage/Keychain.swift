@@ -22,7 +22,7 @@ protocol Keychain {
   var service: String { get set }
 
   func delete() throws
-  func retrieve() throws -> DataType
+  func read() throws -> DataType
   func store(_ data: DataType) throws
 }
 
@@ -34,7 +34,7 @@ extension Keychain {
     }
   }
   
-  func retrieve() throws -> DataType {
+  func read() throws -> DataType {
     var query = keychainQuery()
     query[kSecMatchLimit as String] = kSecMatchLimitOne
     query[kSecReturnAttributes as String] = kCFBooleanTrue
@@ -87,7 +87,7 @@ extension Keychain {
     do {
       // If doesn't already exist, this will throw a KeychainError.notFound,
       // causing the catch block to add it.
-      let _ = try retrieve()
+      let _ = try read()
 
       let updates = [
         String(kSecAttrGeneric): archived

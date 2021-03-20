@@ -153,7 +153,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
           DispatchQueue.main.async {
             loadingAlert.dismiss(animated: true) {
               let errorAlert = UIAlertController.errorAlert(
-                title: "Temporary error",
+                title: "Wallet error",
                 message: "Cannot import wallet. Try again!"
               )
               self.present(errorAlert, animated: true)
@@ -165,7 +165,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
           DispatchQueue.main.async {
             loadingAlert.dismiss(animated: true) {
               let errorAlert = UIAlertController.errorAlert(
-                title: "Temporary error",
+                title: "Wallet error",
                 message: "Cannot store wallet in Keychain. Try again!"
               )
               self.present(errorAlert, animated: true)
@@ -179,7 +179,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
       DispatchQueue.main.async {
         loadingAlert.dismiss(animated: true) {
           let errorAlert = UIAlertController.errorAlert(
-            title: "Temporary error",
+            title: "Wallet error",
             message: "Cannot import wallet. Try again!"
           )
           self.present(errorAlert, animated: true)

@@ -57,7 +57,26 @@ class WalletQRCodeView: UIViewController {
   }()
   
   fileprivate let copyButton: UIButton = {
-    let button = IncognitoButton(title: "Copy my wallet address")
+    let button = IncognitoButton(title: "Copy")
+    button.semanticContentAttribute = .forceRightToLeft
+    button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+    
+    if #available(iOS 13.0, *) {
+      button.setImage(
+        UIImage(
+          systemName: "doc.on.doc",
+          withConfiguration: UIImage.SymbolConfiguration(scale: .large)
+        )?.withRenderingMode(.alwaysTemplate),
+        for: .normal
+      )
+    } else {
+      // Fallback on earlier versions
+      button.setImage(
+        UIImage(named: "doc.on.doc")?.withRenderingMode(.alwaysTemplate),
+        for: .normal
+      )
+    }
+    
     button.translatesAutoresizingMaskIntoConstraints = false
     return (button)
   }()
@@ -67,7 +86,7 @@ class WalletQRCodeView: UIViewController {
    */
   final fileprivate var walletQRCode: UIImageView {
     let walletQRCode = UIImageView(
-      image: WalletQRCode.transform(from: codeValue, scaleX: 10, scaleY: 10)
+      image: WalletQRCode.transform(from: codeValue, scaleX: 5, scaleY: 5)
     )
     walletQRCode.contentMode = .center
     walletQRCode.translatesAutoresizingMaskIntoConstraints = false

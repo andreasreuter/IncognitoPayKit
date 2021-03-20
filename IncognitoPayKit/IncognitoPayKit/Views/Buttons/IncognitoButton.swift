@@ -40,6 +40,7 @@ class IncognitoButton: UIButton {
       for: .normal
     )
     titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+    tintColor = ColorCompatibility.systemBackground
     backgroundColor = ColorCompatibility.label
     layer.cornerRadius = 8
     

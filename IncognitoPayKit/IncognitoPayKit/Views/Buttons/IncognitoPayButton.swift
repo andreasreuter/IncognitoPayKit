@@ -34,6 +34,13 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
      * activate event handlers.
      */
     self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    
+    if #available(iOS 13.0, *) {
+      self.addInteraction(UIContextMenuInteraction(delegate: self))
+    } else {
+      // Fallback on earlier versions
+      self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(buttonLongPressed)))
+    }
   }
   
   public required init?(coder: NSCoder) {
@@ -45,28 +52,17 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
     
     do {
       let keychain = WalletDataKeychain()
-      let _ = try keychain.retrieve()
+      let _ = try keychain.read()
       
       /*
        * If a wallet can be read from the keychain show wallet and payment options.
        */
-      let incognitoPayOptions = IncognitoPayOptions(
-        sendTo: {
-          print("Incognito Pay send coin to.")
-          let contacts = ContactView(base: self.base, contactList: self.contactList)
-          contacts.modalPresentationStyle = .overCurrentContext
-          self.base.present(contacts, animated: true)
-        },
-        receive: {
-          print("Incognito Pay receive coin.")
-          self.base.present(
-            WalletQRCodeView(base: self.base, codeValue: "xyz"),
-            animated: true
-          )
-        }
-      )
+      print("Incognito Pay send coin to.")
       
-      self.base.present(incognitoPayOptions, animated: true)
+      let contacts = ContactView(base: self.base, contactList: self.contactList)
+      contacts.modalPresentationStyle = .overCurrentContext
+      
+      self.base.present(contacts, animated: true)
     } catch {
       print("Error initialise wallet from Keychain: \(error).")
       
@@ -76,7 +72,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
        * or create a new wallet.
        */
       let newWalletOptions = NewWalletOptions(
-        newWallet: { [self] in
+        newWallet: { [self] _ in
           print("Incognito Pay create new wallet.")
           
           let loadingAlert = UIAlertController.loadingAlert(
@@ -112,7 +108,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
                     let errorAlert = UIAlertController.errorAlert(
-                      title: "Temporary error",
+                      title: "Wallet error",
                       message: "Cannot create wallet. Try again!"
                     )
                     self.base.present(errorAlert, animated: true)
@@ -124,7 +120,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
                     let errorAlert = UIAlertController.errorAlert(
-                      title: "Temporary error",
+                      title: "Wallet error",
                       message: "Cannot store wallet in Keychain. Try again!"
                     )
                     self.base.present(errorAlert, animated: true)
@@ -138,7 +134,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
             DispatchQueue.main.async {
               loadingAlert.dismiss(animated: true) {
                 let errorAlert = UIAlertController.errorAlert(
-                  title: "Temporary error",
+                  title: "Wallet error",
                   message: "Cannot create wallet. Try again!"
                 )
                 self.base.present(errorAlert, animated: true)
@@ -146,7 +142,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
             }
           }
         },
-        importWallet: { [self] in
+        importWallet: { [self] _ in
           print("Incognito Pay import wallet.")
           self.base.present(ImportWalletView(id: id), animated: true)
         }
@@ -154,6 +150,13 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
       
       self.base.present(newWalletOptions, animated: true)
     }
+  }
+  
+  @objc final public func buttonLongPressed(_ sender: UIButton) {
+    print("Incognito Pay button long pressed.")
+    
+    let walletPopout = WalletPopoutButtons(base: self.base)
+    self.base.present(walletPopout, animated: true)
   }
   
   private func incognitoLogo() -> UIImageView {

@@ -25,6 +25,10 @@ extension WalletData: Codable {
     case identifier
   }
   
+  public var description: String {
+    return ("Private Key \(privateKey)")
+  }
+  
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 

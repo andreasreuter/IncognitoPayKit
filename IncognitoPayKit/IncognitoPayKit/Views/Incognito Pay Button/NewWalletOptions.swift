@@ -15,11 +15,11 @@ class NewWalletOptions: UIAlertController {
     }
   }
   
-  var newWallet: () -> Void
+  var newWallet: (UIAlertAction) -> Void
   
-  var importWallet: () -> Void
+  var importWallet: (UIAlertAction) -> Void
   
-  init(newWallet: @escaping () -> Void, importWallet: @escaping () -> Void) {
+  init(newWallet: @escaping (UIAlertAction) -> Void, importWallet: @escaping (UIAlertAction) -> Void) {
     self.newWallet = newWallet
     self.importWallet = importWallet
     
@@ -43,29 +43,19 @@ class NewWalletOptions: UIAlertController {
     /*
      * create a new wallet.
      */
-    let newWallet = formatOption(title: "New wallet", style: .default, self.newWallet)
+    let newWallet = UIAlertAction(title: "New wallet", style: .default, handler: self.newWallet)
     addAction(newWallet)
     
     /*
      * import an existing wallet.
      */
-    let importWallet = formatOption(title: "Import my wallet", style: .default, self.importWallet)
+    let importWallet = UIAlertAction(title: "Import my wallet", style: .default, handler: self.importWallet)
     addAction(importWallet)
     
     /*
      * cancel button closes action sheet.
      */
-    let cancel = formatOption(title: "Cancel", style: .cancel, nil)
+    let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     addAction(cancel)
-  }
-  
-  private func formatOption(title: String, style: UIAlertAction.Style, _ handler: (() -> Void)?) -> UIAlertAction {
-    UIAlertAction(
-      title: title,
-      style: style,
-      handler: { _ in
-        handler?()
-      }
-    )
   }
 }

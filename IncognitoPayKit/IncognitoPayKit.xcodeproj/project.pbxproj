@@ -27,6 +27,7 @@
 		E15947E02592C08D0091C335 /* PaymentConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */; };
 		E15947EA25939E850091C335 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15947E925939E850091C335 /* InsetLabel.swift */; };
 		E15B55812600290B00AA67D5 /* PrivacyCoinGenuineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B55802600290B00AA67D5 /* PrivacyCoinGenuineError.swift */; };
+		E15B558326015A6A00AA67D5 /* WalletPopoutButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B558226015A6A00AA67D5 /* WalletPopoutButtons.swift */; };
 		E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E548B25961CD000B1D5D8 /* NewWallet.swift */; };
 		E15E54A625967C8700B1D5D8 /* UIView+BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */; };
 		E15F87D12597E670009C95BD /* PaymentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15F87D02597E670009C95BD /* PaymentError.swift */; };
@@ -39,7 +40,6 @@
 		E1A704E6256BB0F900DC9AAA /* IncognitoPayKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A704D8256BB0F900DC9AAA /* IncognitoPayKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A704F2256BB60200DC9AAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A704F1256BB60200DC9AAA /* Images.xcassets */; };
 		E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */; };
-		E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */; };
 		E1A70583256C00B900DC9AAA /* WalletQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70582256C00B900DC9AAA /* WalletQRCode.swift */; };
 		E1A70589256C03B600DC9AAA /* WalletQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */; };
 		E1A85A4125BB1F8600BBFE06 /* ColorCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A85A4025BB1F8600BBFE06 /* ColorCompatibility.swift */; };
@@ -67,6 +67,7 @@
 		E15947DF2592C08D0091C335 /* PaymentConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmView.swift; sourceTree = "<group>"; };
 		E15947E925939E850091C335 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		E15B55802600290B00AA67D5 /* PrivacyCoinGenuineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyCoinGenuineError.swift; sourceTree = "<group>"; };
+		E15B558226015A6A00AA67D5 /* WalletPopoutButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPopoutButtons.swift; sourceTree = "<group>"; };
 		E15E548B25961CD000B1D5D8 /* NewWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWallet.swift; sourceTree = "<group>"; };
 		E15E54A525967C8700B1D5D8 /* UIView+BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BlurView.swift"; sourceTree = "<group>"; };
 		E15F87D02597E670009C95BD /* PaymentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentError.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		E1A704E5256BB0F900DC9AAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1A704F1256BB60200DC9AAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1A704F5256BB70D00DC9AAA /* IncognitoPayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayButton.swift; sourceTree = "<group>"; };
-		E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoPayOptions.swift; sourceTree = "<group>"; };
 		E1A70582256C00B900DC9AAA /* WalletQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQRCode.swift; sourceTree = "<group>"; };
 		E1A70588256C03B600DC9AAA /* WalletQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletQRCodeView.swift; sourceTree = "<group>"; };
 		E1A85A4025BB1F8600BBFE06 /* ColorCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCompatibility.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		E14B7D5D25960E54005CE0F5 /* Incognito Pay Button */ = {
 			isa = PBXGroup;
 			children = (
-				E1A7057B256BE36A00DC9AAA /* IncognitoPayOptions.swift */,
+				E15B558226015A6A00AA67D5 /* WalletPopoutButtons.swift */,
 				E14B7D5E25960EDF005CE0F5 /* NewWalletOptions.swift */,
 			);
 			path = "Incognito Pay Button";
@@ -358,6 +358,7 @@
 				E15E548C25961CD000B1D5D8 /* NewWallet.swift in Sources */,
 				E1A704F6256BB70D00DC9AAA /* IncognitoPayButton.swift in Sources */,
 				E14DF655259220D900BADF50 /* IncognitoContact.swift in Sources */,
+				E15B558326015A6A00AA67D5 /* WalletPopoutButtons.swift in Sources */,
 				E1018A1B25FE143200768BC6 /* RemitteeContact.swift in Sources */,
 				E1E8A3C2256D0B07009BDCB5 /* IncognitoButton.swift in Sources */,
 				E12D39842590C256006D25EF /* ContactView.swift in Sources */,
@@ -369,7 +370,6 @@
 				E1A85A4125BB1F8600BBFE06 /* ColorCompatibility.swift in Sources */,
 				E15B55812600290B00AA67D5 /* PrivacyCoinGenuineError.swift in Sources */,
 				E169374B258EC77C0098C525 /* Config.swift in Sources */,
-				E1A7057C256BE36A00DC9AAA /* IncognitoPayOptions.swift in Sources */,
 				E1483C8D259740170088E145 /* UIAlertController+Activity.swift in Sources */,
 				E15F87D12597E670009C95BD /* PaymentError.swift in Sources */,
 				E15947D42592B16A0091C335 /* PaymentView.swift in Sources */,
