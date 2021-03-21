@@ -24,14 +24,14 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 	}
 
 	if error := json.NewDecoder(request.Body).Decode(&wallet); error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
 	isGenuine, error := isPrivacyCoinGenuine(wallet.PrivacyCoins)
 
 	if !isGenuine && error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -42,7 +42,7 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 	privacyCoins, error := strconv.ParseUint(strings.TrimSpace(wallet.PrivacyCoins), 0, 64)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -59,7 +59,7 @@ func WalletSend(response http.ResponseWriter, request *http.Request) {
 	)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 

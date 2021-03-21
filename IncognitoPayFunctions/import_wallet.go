@@ -3,7 +3,6 @@ package IncognitoPayFunctions
 import (
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/incognitochain/go-incognito-sdk/privacy"
@@ -29,21 +28,21 @@ func ImportWallet(response http.ResponseWriter, request *http.Request) {
 	}
 
 	if error := json.NewDecoder(request.Body).Decode(&wallet); error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
 	keyWallet, error := wallet2.Base58CheckDeserialize(wallet.PrivateKey)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
 	error = keyWallet.KeySet.InitFromPrivateKey(&keyWallet.KeySet.PrivateKey)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -56,7 +55,7 @@ func ImportWallet(response http.ResponseWriter, request *http.Request) {
 	error = remittee.Insert(wallet.Id, walletAddress)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 

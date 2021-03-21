@@ -2,7 +2,6 @@ package IncognitoPayFunctions
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	remittee "ndncmnky.com/IncognitoPayFunctions/Incognito"
@@ -14,25 +13,25 @@ type Remittee struct {
 }
 
 //
-// RetrieveRemittee is hosted as Cloud Function. It retrieves remittees
+// ReceiveRemittee is hosted as Cloud Function. It receives remittees
 // with their wallet addresses from Google Firebase because each is used
 // to execute payments to any of the contacts, they are public anyhow.
 //
-func RetrieveRemittee(response http.ResponseWriter, request *http.Request) {
+func ReceiveRemittee(response http.ResponseWriter, request *http.Request) {
 	var remittees2 []string
 
 	if error := json.NewDecoder(request.Body).Decode(&remittees2); error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
 	/*
-	 * retrieves remittees with their wallet addresses by certain ids of remittees.
+	 * receives remittees with their wallet addresses by certain ids of remittees.
 	 */
-	results, error := remittee.Retrieve(remittees2)
+	results, error := remittee.Receive(remittees2)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 

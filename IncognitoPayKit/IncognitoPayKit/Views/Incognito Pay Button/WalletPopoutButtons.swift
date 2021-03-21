@@ -48,14 +48,34 @@ extension IncognitoPayButton {
       /*
        * receive money via QR Code from a friend.
        */
-      let qrCode = UIAction(title: "Show my QR Code", image: UIImage(systemName: "qrcode"), handler: self.qrCodeButtonTapped)
+      let qrCode = UIAction(
+        title: "Show my QR Code",
+        image: UIImage(systemName: "qrcode"),
+        handler: self.qrCodeButtonTapped
+      )
       
       /*
        * backup the wallet keys.
        */
-      let backupWallet = UIAction(title: "Backup", image: UIImage(systemName: "doc.on.doc"), identifier: nil, handler: self.backupButtonTapped)
+      let backupWallet = UIAction(
+        title: "Backup",
+        image: UIImage(systemName: "doc.on.doc"),
+        identifier: nil,
+        handler: self.backupButtonTapped
+      )
       
-      let children = [qrCode, backupWallet]
+      /*
+       * unlink the wallet by deleting remittee in remote database.
+       */
+      let unlinkWallet = UIAction(
+        title: "Unlink wallet",
+        image: UIImage(systemName: "square.slash"),
+        identifier: nil,
+        attributes: .destructive,
+        handler: self.unlinkButtonTapped
+      )
+      
+      let children = [qrCode, backupWallet, unlinkWallet]
       return (UIMenu(title: "", children: children))
     }
     
@@ -91,7 +111,7 @@ extension IncognitoPayButton {
   }
   
   @objc final public func backupButtonTapped(_ sender: UIAction) {
-    print("Incognito backup wallet button tapped.")
+    print("Incognito Pay backup wallet button tapped.")
     
     do {
       let keychain = WalletDataKeychain()
@@ -119,6 +139,85 @@ extension IncognitoPayButton {
         message: "Cannot backup your wallet. Try again!"
       )
       self.base.present(errorAlert, animated: true)
+    }
+  }
+  
+  @objc func unlinkButtonTapped(_ sender: UIAction) {
+    print("Incognito Pay unlink wallet button tapped.")
+    
+    let loadingAlert = UIAlertController.loadingAlert(
+      text: "Unlink wallet..."
+    )
+    self.base.present(loadingAlert, animated: true)
+    
+    do {
+      let keychain = WalletDataKeychain()
+      let walletData = try keychain.read()
+      
+      /*
+       * It unlinks your wallet because it's stored as a remittee to show up at
+       * other contact lists when synchronised from remote database.
+       */
+      try RemitteeContact.unlinkRemittee(id: id, walletAddress: walletData.walletAddress) { isUnlinked in
+        do {
+          if (isUnlinked == false) {
+            throw WalletError.unlinkWallet
+          }
+          
+          try WalletData.unlinkWallet()
+          
+          DispatchQueue.main.async {
+            loadingAlert.dismiss(animated: true) {
+              let activityAlert = UIAlertController.activityAlert(
+                symbolName: "square.slash",
+                text: "Wallet unlinked!"
+              )
+              self.base.present(activityAlert, animated: true)
+              
+              DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.4) {
+                activityAlert.dismiss(animated: true)
+              }
+            }
+          }
+        } catch is WalletError {
+          print("Error unlink wallet via backend.")
+          
+          DispatchQueue.main.async {
+            loadingAlert.dismiss(animated: true) {
+              let errorAlert = UIAlertController.errorAlert(
+                title: "Unlink error",
+                message: "Cannot unlink a wallet. You may have already unlinked a wallet or you have not yet created a wallet. You can try to create a new wallet or import your existing wallet instead."
+              )
+              self.base.present(errorAlert, animated: true)
+            }
+          }
+        }
+        catch {
+          print("Error unlink wallet in Keychain: \(error).")
+           
+          DispatchQueue.main.async {
+            loadingAlert.dismiss(animated: true) {
+              let errorAlert = UIAlertController.errorAlert(
+                title: "Unlink error",
+                message: "Cannot unlink wallet in Keychain. Try again!"
+              )
+              self.base.present(errorAlert, animated: true)
+            }
+          }
+        }
+      }
+    } catch {
+      print("Error unlink wallet from Keychain: \(error).")
+      
+      DispatchQueue.main.async {
+        loadingAlert.dismiss(animated: true) {
+          let errorAlert = UIAlertController.errorAlert(
+            title: "Unlink error",
+            message: "Cannot unlink your wallet. Try again!"
+          )
+          self.base.present(errorAlert, animated: true)
+        }
+      }
     }
   }
 }

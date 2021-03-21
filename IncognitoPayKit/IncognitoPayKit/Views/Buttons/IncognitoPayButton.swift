@@ -17,7 +17,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
   
   private var contactList: [IncognitoContact]
   
-  private let id: String
+  private(set) var id: String
   
   public required init(base: UIViewController, contactList: [IncognitoContact], id: String) {
     /*
@@ -92,7 +92,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                 DispatchQueue.main.async {
                   loadingAlert.dismiss(animated: true) {
                     let activityAlert = UIAlertController.activityAlert(
-                      symbolName: "rectangle.fill.badge.plus",
+                      symbolName: "square.on.square.dashed",
                       text: "Wallet created!"
                     )
                     self.base.present(activityAlert, animated: true)
@@ -109,7 +109,7 @@ public class IncognitoPayButton: UIButton, CAAnimationDelegate {
                   loadingAlert.dismiss(animated: true) {
                     let errorAlert = UIAlertController.errorAlert(
                       title: "Wallet error",
-                      message: "Cannot create wallet. Try again!"
+                      message: "Cannot create a wallet. You may have already created a wallet. You can unlink your wallet instead and try to create a new wallet or import your existing wallet."
                     )
                     self.base.present(errorAlert, animated: true)
                   }

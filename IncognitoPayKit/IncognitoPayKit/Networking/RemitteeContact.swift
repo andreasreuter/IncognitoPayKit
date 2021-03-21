@@ -13,7 +13,7 @@ class RemitteeContact {
     let ids: [String] = contactList.map({ $0.id })
     
     let wallet = WalletAPI()
-    try wallet.retrieveRemittee(ids: ids) { remittees in
+    try wallet.receiveRemittee(ids: ids) { remittees in
       var remitteeContacts = [IncognitoContact]()
       
       if (remittees.count > 0) {
@@ -31,11 +31,22 @@ class RemitteeContact {
             
             remitteeContacts.append(contact!)
           }
-          
         }
       }
       
       completion(remitteeContacts)
+    }
+  }
+  
+  static func unlinkRemittee(id: String, walletAddress: String, completion: @escaping (Bool) -> Void) throws {
+    let unlinkRemittee = UnlinkRemittee(
+      id: id,
+      walletAddress: walletAddress
+    )
+    
+    let wallet = WalletAPI()
+    try wallet.unlinkRemittee(unlinkRemittee: unlinkRemittee) { isUnlinked in
+      completion(isUnlinked)
     }
   }
 }

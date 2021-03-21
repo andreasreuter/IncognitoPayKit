@@ -135,7 +135,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
           DispatchQueue.main.async {
             loadingAlert.dismiss(animated: true) {
               let activityAlert = UIAlertController.activityAlert(
-                symbolName: "rectangle.fill.badge.plus",
+                symbolName: "square.on.square.dashed",
                 text: "Wallet imported!"
               )
               self.present(activityAlert, animated: true)
@@ -154,7 +154,7 @@ class ImportWalletView: UIViewController, UITextViewDelegate {
             loadingAlert.dismiss(animated: true) {
               let errorAlert = UIAlertController.errorAlert(
                 title: "Wallet error",
-                message: "Cannot import wallet. Try again!"
+                message: "Cannot import a wallet. You may have already linked a wallet. You can unlink your wallet instead and try again to import your wallet."
               )
               self.present(errorAlert, animated: true)
             }

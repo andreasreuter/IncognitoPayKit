@@ -10,4 +10,5 @@ import Foundation
 
 enum WalletError: Error {
   case nilWallet
+  case unlinkWallet
 }

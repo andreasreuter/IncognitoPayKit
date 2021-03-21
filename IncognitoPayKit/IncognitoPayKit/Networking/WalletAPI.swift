@@ -30,6 +30,16 @@ struct WalletSend: Codable {
   }
 }
 
+struct UnlinkRemittee: Codable {
+  let id: String
+  let walletAddress: String
+  
+  enum CodingKeys: String, CodingKey {
+    case id
+    case walletAddress
+  }
+}
+
 class WalletAPI {
   func newWallet(id: String, completion: @escaping (Wallet?) -> Void) throws {
     guard let url = URL(string: try Config.value(for: "REST_API_BASE_URL") + "/NewWallet") else {
@@ -194,14 +204,16 @@ class WalletAPI {
     .resume()
   }
   
-  func retrieveRemittee(ids: [String], completion: @escaping ([Remittee]) -> Void) throws {
-    guard let url = URL(string: try Config.value(for: "REST_API_BASE_URL") + "/RetrieveRemittee") else {
+  func receiveRemittee(ids: [String], completion: @escaping ([Remittee]) -> Void) throws {
+    guard let url = URL(string: try Config.value(for: "REST_API_BASE_URL") + "/ReceiveRemittee") else {
       print("Error: cannot get api base url")
+      completion([])
       return
     }
     
     guard let jsonData = try? JSONEncoder().encode(ids) else {
       print("Error: cannot cast parameters to json")
+      completion([])
       return
     }
     
@@ -213,18 +225,60 @@ class WalletAPI {
     URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let error = error {
         print("Error returning remittees: \(error)")
+        completion([])
         return
       }
       
       guard let httpResponse = response as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode) else {
         print("Error unexpecting status code: \(response!)")
+        completion([])
         return
       }
       
       if let data = data,
          let remittees = try? JSONDecoder().decode([Remittee].self, from: data) {
         completion(remittees)
+      }
+    }
+    .resume()
+  }
+  
+  func unlinkRemittee(unlinkRemittee: UnlinkRemittee, completion: @escaping (Bool) -> Void) throws {
+    guard let url = URL(string: try Config.value(for: "REST_API_BASE_URL") + "/UnlinkRemittee") else {
+      print("Error: cannot get api base url")
+      completion(false)
+      return
+    }
+    
+    guard let jsonData = try? JSONEncoder().encode(unlinkRemittee) else {
+      print("Error: cannot cast parameters to json")
+      completion(false)
+      return
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = jsonData
+    
+    URLSession.shared.dataTask(with: request) { (data, response, error) in
+      if let error = error {
+        print("Error unlinking remittee: \(error)")
+        completion(false)
+        return
+      }
+      
+      guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+        print("Error unexpecting status code: \(response!)")
+        completion(false)
+        return
+      }
+      
+      if let data = data,
+         let isUnlinked = try? JSONDecoder().decode(Bool.self, from: data) {
+        completion(isUnlinked)
       }
     }
     .resume()

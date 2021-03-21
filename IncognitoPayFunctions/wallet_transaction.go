@@ -20,7 +20,7 @@ func WalletTransaction(response http.ResponseWriter, request *http.Request) {
 	}
 
 	if error := json.NewDecoder(request.Body).Decode(&wallet); error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -33,7 +33,7 @@ func WalletTransaction(response http.ResponseWriter, request *http.Request) {
 	)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 

@@ -2,7 +2,6 @@ package IncognitoPayFunctions
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	incognito "ndncmnky.com/IncognitoPayFunctions/Incognito"
@@ -27,7 +26,7 @@ func NewWallet(response http.ResponseWriter, request *http.Request) {
 	}
 
 	if error := json.NewDecoder(request.Body).Decode(&wallet2); error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -37,7 +36,7 @@ func NewWallet(response http.ResponseWriter, request *http.Request) {
 	walletAddress, publicKey, readonlyKey, privateKey, _, _, error := newWallet.CreateWallet()
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -50,7 +49,7 @@ func NewWallet(response http.ResponseWriter, request *http.Request) {
 	error = remittee.Insert(wallet2.Id, walletAddress)
 
 	if error != nil {
-		fmt.Fprint(response, error)
+		http.Error(response, error.Error(), http.StatusBadRequest)
 		return
 	}
 

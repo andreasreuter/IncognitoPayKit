@@ -61,4 +61,10 @@ extension WalletData: Codable {
     let keychain = WalletDataKeychain()
     try keychain.store(walletData)
   }
+  
+  static func unlinkWallet() throws {
+    // delete wallet data in keychain.
+    let keychain = WalletDataKeychain()
+    try keychain.delete()
+  }
 }

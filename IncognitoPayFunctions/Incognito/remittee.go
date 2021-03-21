@@ -58,7 +58,7 @@ func Insert(id string, walletAddress string) error {
 	return (nil)
 }
 
-func Retrieve(ids []string) ([]Remittee, error) {
+func Receive(ids []string) ([]Remittee, error) {
 	var remitteeList []Remittee
 	var error error
 
@@ -87,7 +87,44 @@ func Retrieve(ids []string) ([]Remittee, error) {
 		}
 	}
 
+	defer client.Close()
+
 	return (remitteeList), (nil)
+}
+
+func Delete(id string, walletAddress string) error {
+	var error error
+
+	client, error := createClient()
+
+	if error != nil {
+		return (error)
+	}
+
+	remittees := client.Collection("remittees")
+	docs := remittees.
+		Where("id", "==", id).
+		Where("wallet_address", "==", walletAddress).
+		Documents(context.Background())
+	snap, _ := docs.GetAll()
+
+	if len(snap) > 0 {
+		batch := client.Batch()
+
+		for _, doc := range snap {
+			batch.Delete(doc.Ref)
+		}
+
+		_, error := batch.Commit(context.Background())
+
+		if error != nil {
+			return (error)
+		}
+	}
+
+	defer client.Close()
+
+	return (nil)
 }
 
 func createClient() (*firestore.Client, error) {
@@ -112,7 +149,10 @@ func remitteeBy(client *firestore.Client, column string, value string) *Remittee
 	var remittee *Remittee
 
 	remittees := client.Collection("remittees")
-	docs := remittees.Where(column, "==", value).Limit(1).Documents(context.Background())
+	docs := remittees.
+		Where(column, "==", value).
+		Limit(1).
+		Documents(context.Background())
 	snap, _ := docs.GetAll()
 
 	if len(snap) > 0 {
